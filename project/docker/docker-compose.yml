@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  ufes:
+    container_name: 'ufes'
+    image: 'ufes'
+    build: .
+    command: bash -c "npm install && ng serve --host=0.0.0.0 --disable-host-check"
+    ports:
+      - '40:40'      
+    volumes:
+      - ../:/project    
+    user: "node"

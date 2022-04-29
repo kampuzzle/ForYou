@@ -1,13 +1,13 @@
 version: '3'
 
-services:
-  ufes:
-    container_name: 'ufes'
-    image: 'ufes'
+services: 
+  docker:
+    container_name: 'foryou'
+    image: 'foryou'
     build: .
     command: bash -c "npm install && ng serve --host=0.0.0.0 --disable-host-check"
     ports:
-      - '40:40'      
+      - "80:4200"
     volumes:
-      - ../:/project    
+      - ../:/ForYou
     user: "node"

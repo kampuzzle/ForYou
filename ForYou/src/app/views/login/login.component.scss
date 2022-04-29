@@ -6,5 +6,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+}
+
+.box {
+    width: 900px;
+    height: 800px;
+    background-color: #ECCBCB;
+    border-radius: 30px;
+}
+
+.logo {
+    background-image: url("../../../assets/logo.png");
+    background-size: cover;
+    width: 250px;
+    height: 250px;
+
+    margin-left: 326px;
+    margin-top: 36px;
+    margin-bottom: 50px;
+}
+
+.label {
+    font: normal 500 24px/28px Roboto;
+    color: #085273;
+    margin-top: 33px;
+    margin-left: 80px;
+}
+
+.input {
+    width: 740px;
+    height: 60px;
+
+    background-color: #C4C4C4;
+    border-radius: 10px;
+    border: none;
+
+    margin-top: -15px;
+    margin-left: 80px;
+
+    font: normal 400 20px/24px Roboto;
+    padding-left: 20px
 }

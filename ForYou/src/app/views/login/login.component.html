@@ -4,13 +4,18 @@
         <form #f="ngForm">
             
             <p class="label">USUÁRIO</p>
-            <input class="input" type="text" id="username" placeholder="Exemplo">
+            <input class="input" type="text" [(ngModel)]="user.username" placeholder="Exemplo" name="user">
             
             
             <p class="label">SENHA</p>
-            <input class="input" type="password" id="password" placeholder="Senha">
+            <input class="input" type="password" [(ngModel)]="user.password" placeholder="Senha" name="pass">
             
-            <br><button type="submit" class="btn">Login</button>
+            <br><button (click)="login()" class="btn">Login</button>
+       
+            
+
         </form>
+
+        
     </div>    
 </div>

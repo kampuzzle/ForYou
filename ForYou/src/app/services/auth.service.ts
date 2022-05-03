@@ -34,8 +34,8 @@ export class AuthService implements CanActivate{
   }
 
   public IsAuthenticated(): boolean {
-    this.loadUSer();
-    return !this.jwtHelper.is
+    this.loadUser();
+    return !this.jwtHelper.isTokenExpired(this.getCurrentToken());
   }
 
   public loadUser(): void {

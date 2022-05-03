@@ -60,3 +60,20 @@
 
     font: normal 500 32px/38px Roboto;
 }
+
+.btn:hover {
+    background-color: #37888b;
+    cursor: pointer;
+}
+
+.btn:disabled {
+    background-color: #797777;
+    cursor: auto;
+}
+
+.error-message {
+    position: absolute;
+    top: 690px;
+    margin-left: 80px;
+    color: red;
+}

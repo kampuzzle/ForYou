@@ -1,1 +1,19 @@
-<p>home works!</p>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,500;1,700&display=swap" rel="stylesheet">
+
+<div class="background">
+    <div class="box">
+        <p>CATEGORIAS</p>
+    </div>
+
+    <div class="box" id="center">
+        <span class="material-icons" (click)="decrement()">arrow_back_ios</span>
+        <p>{{ month }}</p>
+        <span class="material-icons" id="back" (click)="increment()">arrow_forward_ios</span>
+    </div>
+
+    <div class="box" id="box2">
+        <p>EXTRATO</p>
+    </div>
+</div>

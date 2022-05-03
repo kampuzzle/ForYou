@@ -1,0 +1,49 @@
+.background {
+    background-image: url("../../../assets/home-background.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.box {
+    background: rgba(245, 177, 171, 0.83);
+    border-radius: 10px;
+    width: 408px;
+    height: 926px;
+
+    margin-left: 73px;
+    margin-top: 37px;    
+}
+
+#center {
+    width: 830px;
+    margin-left: 64px;
+}
+
+#box2 {
+    margin-left: 64px;
+}
+
+p {
+    font: normal 700 36px/42px Roboto;
+    color: #085273;
+    text-align: center;
+    margin-top: 28px;
+}
+
+.material-icons {
+    transform: scale(1.7);
+    color: #085273;
+    position: absolute;
+    top: 75px;
+    margin-left: 280px;
+}
+
+#back {
+    margin-left: 530px;
+}
+
+.material-icons:hover {
+    cursor: pointer;
+}

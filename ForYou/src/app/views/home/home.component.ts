@@ -10,6 +10,8 @@ export class HomeComponent implements OnInit {
   month: string = 'Janeiro';
   monthList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
+  despesas = ['Alimentação ', 'Lazer', 'Transporte', 'Saude', 'Educação', 'Moradia', 'Outros'];
+
   constructor() { }
 
   ngOnInit(): void {

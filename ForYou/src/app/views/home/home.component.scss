@@ -47,3 +47,22 @@ p {
 .material-icons:hover {
     cursor: pointer;
 }
+
+mat-tab-group {
+   font: normal 300 24px/28px Roboto;  
+   min-width: 0; 
+   justify-content: flex-end;
+   transform: none;
+   transition: none;
+}
+
+::ng-deep .mat-tab-header-pagination {
+    display: none !important;
+}
+
+.content {
+    font: normal 300 20px/28px Roboto;  
+    margin-top: 30px;
+    text-align: center;
+}
+

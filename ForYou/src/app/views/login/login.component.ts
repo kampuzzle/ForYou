@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(
-    private authService: AuthService,
+    // private authService: AuthService,
     private router: Router
   ) { }
 
@@ -24,15 +24,15 @@ export class LoginComponent implements OnInit {
   }
 
   public login(username: string, password: string): void {
-    this.authService.login(username, password).subscribe(
-      res => {
+    // this.authService.login(username, password).subscribe(
+    //   res => {
         this.router.navigate(['/home']);
-      },
-      (err: any) => {
-        console.log(err);
-        this.user.password = undefined;
-      }
-    )
+    //   },
+    //   (err: any) => {
+    //     console.log(err);
+    //     this.user.password = undefined;
+    //   }
+    // )
   }
 
 }

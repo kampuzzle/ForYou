@@ -4,8 +4,11 @@
 
 <div class="background">
     <div class="box">
+
         <p>CATEGORIAS</p>
+
         <mat-tab-group mat-align-tabs="center" class="tab" style="min-width: 0; width: 100%">
+
             <mat-tab class="label" label="Despesas">
                 <div class="content" *ngFor="let despesa of despesas">{{ despesa }}</div>
             </mat-tab>
@@ -13,17 +16,23 @@
             <mat-tab class="label" label="Receitas">
                 <div class="content" *ngFor="let receita of receitas">{{ receita }}</div>
             </mat-tab>
+
         </mat-tab-group>
 
     </div>
 
     <div class="box" id="center">
+
         <span class="material-icons" (click)="decrement()">arrow_back_ios</span>
         <p>{{ month }}</p>
         <span class="material-icons" id="back" (click)="increment()">arrow_forward_ios</span>
+
     </div>
 
     <div class="box" id="box2">
+
         <p>EXTRATO</p>
+
+        
     </div>
 </div>

@@ -32,7 +32,7 @@ p {
     margin-top: 28px;
 }
 
-.material-icons {
+#foward {
     transform: scale(1.7);
     color: #085273;
     position: absolute;
@@ -41,6 +41,10 @@ p {
 }
 
 #back {
+    transform: scale(1.7);
+    color: #085273;
+    position: absolute;
+    top: 75px;
     margin-left: 530px;
 }
 
@@ -48,6 +52,22 @@ p {
     cursor: pointer;
 }
 
+// ADD RECEITA E DESPESA
+#receita {
+    color: #13BB6A;
+    transform: scale(6);
+    margin-left: 326px;
+    margin-top: 650px;
+}
+
+#despesa {
+    color: #E73434;
+    transform: scale(6);
+    margin-left: 234px;
+    margin-top: 650px;
+}
+
+// MAT TAB
 mat-tab-group {
    font: normal 300 24px/28px Roboto;  
    min-width: 0; 

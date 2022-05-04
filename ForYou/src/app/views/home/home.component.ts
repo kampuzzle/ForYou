@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,9 @@ export class HomeComponent implements OnInit {
   despesas = ['Alimentação ', 'Lazer', 'Transporte', 'Saude', 'Educação', 'Moradia', 'Outros'];
   receitas = ['Salário', 'Bolsa', 'Mesada'];
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -24,5 +27,13 @@ export class HomeComponent implements OnInit {
 
   increment() {
     this.month = this.monthList[this.monthList.indexOf(this.month) + 1];
+  }
+
+  debt() {
+    this.router.navigate(['/new-debt']);
+  }
+
+  income() {
+    this.router.navigate(['/new-income']);
   }
 }

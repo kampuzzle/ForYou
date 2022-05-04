@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { map, Observable } from 'rxjs';
 import { User } from '../models/user';
+import { BackendService } from './backend.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService implements CanActivate{
 
   serviceUrl: string = "/auth";
@@ -15,27 +18,33 @@ export class AuthService implements CanActivate{
 
   constructor( 
     public jwtHelper: JwtHelperService,
-    private router: Router) {
+    private router: Router,
+    private backendService: BackendService) {
     var token = localStorage.getItem(this.tokenName);
   }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    if(!this.IsAuthenticated()){
+    if(!this.isAuthenticated()){
       this.logout();
       return false;
     }
     return true;
   }
 
+  public login(username: string, password: string): Observable<User> {
+    return this.backendService.post(this.serviceUrl, { "username": username, "password": password }).pipe(map((res: any) => {
+      localStorage.setItem(this.tokenName, res.token);
+
+      var decoded = this.jwtHelper.decodeToken(res.token);
+      this.currentUser = new User(decoded);
+      return this.currentUser;
+    }))
+  }
+
   public logout(): void {
     localStorage.removeItem(this.tokenName);
     this.currentUser = undefined;
     this.router.navigate(['/login']);
-  }
-
-  public IsAuthenticated(): boolean {
-    this.loadUser();
-    return !this.jwtHelper.isTokenExpired(this.getCurrentToken());
   }
 
   public loadUser(): void {

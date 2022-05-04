@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   monthList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
   despesas = ['Alimentação ', 'Lazer', 'Transporte', 'Saude', 'Educação', 'Moradia', 'Outros'];
+  receitas = ['Salário', 'Bolsa', 'Mesada'];
 
   constructor() { }
 

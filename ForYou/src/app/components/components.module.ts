@@ -18,4 +18,6 @@ import { NewComponent } from "./new/new.component";
     ]
 })
 
-export class ComponentsModule { }
+export class ComponentsModule {
+
+}

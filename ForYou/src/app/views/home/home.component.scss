@@ -4,6 +4,9 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+
+    align-items: center;
+    justify-content: center;
 }
 
 .box {
@@ -12,8 +15,8 @@
     width: 408px;
     height: 926px;
 
-    margin-left: 73px;
-    margin-top: 37px;    
+    // margin-left: 73px;
+    // margin-top: 37px;    
 }
 
 #center {

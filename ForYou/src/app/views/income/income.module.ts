@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { IncomeRoutingModule } from './income-routing.module';
 import { IncomeComponent } from './income.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { IncomeComponent } from './income.component';
   ],
   imports: [
     CommonModule,
-    IncomeRoutingModule
+    IncomeRoutingModule,
+    ComponentsModule
   ]
 })
 export class IncomeModule { }

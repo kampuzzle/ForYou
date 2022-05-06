@@ -9,9 +9,20 @@ export class NewComponent implements OnInit {
 
   @Input() title: string = '';
 
+  new: any = {
+    value: '',
+    description: '',
+    category: '',
+    date: ''
+  }
+
   constructor() { }
 
   ngOnInit(): void {
+  
   }
 
+  create() {
+    console.log(this.new);
+  }
 }

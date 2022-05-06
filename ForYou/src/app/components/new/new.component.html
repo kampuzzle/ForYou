@@ -6,19 +6,22 @@
         {{title}}
     </div>
 
-    <p class="label">VALOR</p>
-    <input class="input">
+    <div class="form-group">
+        <p class="label">VALOR</p>
+        <input class="input" [(ngModel)]="new.value" name="value" required>
+        
+        <p class="label">DESCRIÇÃO</p>
+        <input class="input" [(ngModel)]="new.description" name="desc" required>
     
-    <p class="label">DESCRIÇÃO</p>
-    <input class="input">
-
-    <p class="label">CATEGORIA</p>
-    <input class="input">
-
-    <p class="label">DATA</p>
-    <input class="input">
-
-    <button *ngIf="title == 'NOVA DESPESA'" class="button">CRIAR</button>
-    <button *ngIf="title == 'NOVA RECEITA'" class="button" id="income">CRIAR</button>
-
+        <p class="label">CATEGORIA</p>
+        <input class="input" [(ngModel)]="new.category" name="category" required>
+    
+        <p class="label">DATA</p>
+        <input class="input" [(ngModel)]="new.date" name="date" required>
+    
+        <button (click)="create()" *ngIf="title == 'NOVA DESPESA'" class="button">CRIAR</button>
+        <button (click)="create()" *ngIf="title == 'NOVA RECEITA'" class="button" id="income">CRIAR</button>
+    
+    </div>
+    
 </div>

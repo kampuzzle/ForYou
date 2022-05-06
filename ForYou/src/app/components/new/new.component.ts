@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NewComponent implements OnInit {
 
+  @Input() categorys: any = [];
   @Input() title: string = '';
 
   new: any = {
@@ -25,4 +26,5 @@ export class NewComponent implements OnInit {
   create() {
     console.log(this.new);
   }
+
 }

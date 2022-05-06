@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IncomeComponent implements OnInit {
 
+  incomes: any[] = ['Salário', 'Bolsa', 'Mesada'];
+
   constructor() { }
 
   ngOnInit(): void {

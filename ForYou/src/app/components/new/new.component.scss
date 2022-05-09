@@ -69,7 +69,9 @@
 }
 
 select {
-    width: 930px;
+    min-width: 941px;
+    min-height: 62px;
+    padding: 5px 35px 5px 5px;
 }
 
 option {

@@ -78,6 +78,16 @@
     background-color: #13BB6A;
 }
 
+#income:disabled {
+    background-color: #9a9a9a;
+    cursor: not-allowed;
+}
+
+#income:disabled:hover {
+    background-color: #9a9a9a;
+    cursor: not-allowed;
+}
+
 #income:hover {
     background-color: #0f9c4e;
 }

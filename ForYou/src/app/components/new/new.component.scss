@@ -55,6 +55,16 @@
     cursor: pointer;
 }
 
+.button:disabled {
+    background-color: #9a9a9a;
+    cursor: not-allowed;
+}
+
+.button:disabled:hover {
+    background-color: #9a9a9a;
+    cursor: not-allowed;
+}
+
 .button:hover {
     background-color: #ac2c2c;
 }

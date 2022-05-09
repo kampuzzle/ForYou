@@ -22,7 +22,7 @@
         <!-- </datalist> -->
     
         <p class="label">DATA</p>
-        <input class="input" [(ngModel)]="new.date" name="date" required>
+        <input class="input" type="date" [(ngModel)]="new.date" name="date" required>
     
         <button (click)="create()" *ngIf="title == 'NOVA DESPESA'" class="button" [disabled]="!f.valid">CRIAR</button>
         <button (click)="create()" *ngIf="title == 'NOVA RECEITA'" class="button" id="income" [disabled]="!f.valid">CRIAR</button>

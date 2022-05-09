@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { NewComponent } from "./new/new.component";
 import { CurrencyMaskModule } from "ng2-currency-mask"; 
+import { HttpClientModule } from "@angular/common/http";
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
         CommonModule,
         RouterModule,
         FormsModule,
-        CurrencyMaskModule
+        CurrencyMaskModule,
+        HttpClientModule
     ],
     exports: [
         NewComponent

@@ -7,7 +7,7 @@ import { CrudService } from './crud.service';
 })
 export class IncomeDebtService extends CrudService {
 
-  override Url: string = '/modules';
+  override Url: string = 'income-debt';
   override class = 'IncomeDebt';
   
   constructor( backendService: BackendService ) { 

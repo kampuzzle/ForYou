@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IncomeDebtService } from 'src/app/services/income-debt.service';
 
 @Component({
   selector: 'app-new',
@@ -17,14 +18,20 @@ export class NewComponent implements OnInit {
     date: ''
   }
 
-  constructor() { }
+  constructor( private incomeDebtService: IncomeDebtService ) { }
 
   ngOnInit(): void {
   
   }
 
   create() {
-    console.log(this.new);
+    this.incomeDebtService.create(this.new).subscribe(incomeDebt => {
+      this.new = incomeDebt;
+      console.log(incomeDebt);
+    }), (err: any) => {
+      console.log(err);
+    }
   }
+
 
 }

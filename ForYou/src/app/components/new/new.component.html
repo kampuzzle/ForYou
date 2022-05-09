@@ -16,6 +16,7 @@
     
         <p class="label">CATEGORIA</p>
         <select class="input" list="category" [(ngModel)]="new.category" name="category" placeholder="Selecione uma categoria" required>
+            <option value="" disabled selected>Selecione uma categoria</option>
             <option *ngFor="let category of categorys" [value]="category">{{category}}</option>
         </select>   
             <!-- <datalist id="category"> -->

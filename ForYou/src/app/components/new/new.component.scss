@@ -13,7 +13,7 @@
     
     margin-left: 420px;
     padding-top: 87px;
-    margin-bottom: 62px;
+    margin-bottom: 22px;
 }
 
 .label {
@@ -37,6 +37,10 @@
     padding: 5px 20px 5px 20px;
 
     font: normal 400 22px/28px Roboto;
+    color: #085273;
+}
+
+.input::placeholder {
     color: #085273;
 }
 
@@ -91,3 +95,4 @@ select {
 option {
     width: 930px;
 }
+

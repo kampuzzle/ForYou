@@ -1,19 +1,19 @@
 .background {
-    background-image: url("../../../assets/home-background.png");
+    background-image: url("../../../assets/home-background.jpg");
     background-size: cover;
     width: 100vw;
     height: 100vh;
     display: flex;
+
+    align-items: center;
+    justify-content: center;
 }
 
 .box {
-    background: rgba(245, 177, 171, 0.83);
+    background: rgb(244, 190, 186);
     border-radius: 10px;
     width: 408px;
-    height: 926px;
-
-    margin-left: 73px;
-    margin-top: 37px;    
+    height: 926px;  
 }
 
 #center {
@@ -32,15 +32,19 @@ p {
     margin-top: 28px;
 }
 
-.material-icons {
+#foward {
     transform: scale(1.7);
     color: #085273;
     position: absolute;
-    top: 75px;
+    top: 115px;
     margin-left: 280px;
 }
 
 #back {
+    transform: scale(1.7);
+    color: #085273;
+    position: absolute;
+    top: 115px;
     margin-left: 530px;
 }
 
@@ -48,6 +52,22 @@ p {
     cursor: pointer;
 }
 
+// ADD RECEITA E DESPESA
+#receita {
+    color: #13BB6A;
+    transform: scale(6);
+    margin-left: 326px;
+    margin-top: 650px;
+}
+
+#despesa {
+    color: #E73434;
+    transform: scale(6);
+    margin-left: 234px;
+    margin-top: 650px;
+}
+
+// MAT TAB
 mat-tab-group {
    font: normal 300 24px/28px Roboto;  
    min-width: 0; 
@@ -71,4 +91,9 @@ mat-tab-group {
     margin-top: 10px;
     font: normal 500 24px/19px Roboto;
 }
-  
+
+#icons {
+    vertical-align: text-top;
+    margin-right: 10px;
+    color: #5c152a;
+}

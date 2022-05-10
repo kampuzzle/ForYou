@@ -12,7 +12,7 @@
             <p class="label">SENHA</p>
             <input class="input" type="password" [(ngModel)]="user.password" placeholder="Senha" name="pass" #pass="ngModel" required>
             
-            <br><button (click)="login()" class="btn" [disabled]="!f.valid">Login</button>
+            <br><button (click)="login(user.username, user.password)" class="btn" [disabled]="!f.valid">Login</button>
        
             <div class="error-message">
                 <div *ngIf="(!username.valid && username.touched) || (!pass.valid && pass.touched)">

@@ -1,5 +1,7 @@
-FROM node:latest
+FROM node:18.1-alpine3.15
 
 WORKDIR /ForYou/
 
-RUN npm install -g @angular/cli
+USER node
+
+EXPOSE 80

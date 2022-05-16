@@ -5,9 +5,9 @@ services:
     container_name: 'foryou'
     image: 'foryou'
     build: .
-    command: bash -c "npm install && ng serve --host=0.0.0.0 --disable-host-check"
+    command: sh -c "npm install && npm start"
     ports:
-      - "80:4200"
+      - "80:80"
     volumes:
       - ../:/ForYou
     user: "node"

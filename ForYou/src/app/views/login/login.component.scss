@@ -9,8 +9,8 @@
 }
 
 .box {
-    width: 900px;
-    height: 800px;
+    width: 47vw;
+    height: 74vh;
     background-color: #ECCBCB;
     border-radius: 30px;
 }
@@ -18,44 +18,41 @@
 .logo {
     background-image: url("../../../assets/logo.png");
     background-size: cover;
-    width: 250px;
-    height: 250px;
-
-    margin-left: 326px;
-    margin-top: 36px;
-    margin-bottom: 50px;
+    width: 13vw;
+    height: 23vh;
+    margin: 3vh 17vw 5vh 17vw;
 }
 
 .label {
     font: normal 500 24px/28px Roboto;
     color: #085273;
-    margin-top: 33px;
-    margin-left: 80px;
+    margin-top: 3vh;
+    margin-left: 4vw;
 }
 
 .input {
-    width: 740px;
-    height: 60px;
+    width: 38vw;
+    height: 6vh;
 
     background-color: #C4C4C4;
     border-radius: 10px;
     border: none;
 
-    margin-top: -15px;
-    margin-left: 80px;
+    margin-top: -1vh;
+    margin-left: 4vw;
 
     font: normal 400 20px/24px Roboto;
-    padding-left: 20px
+    padding-left: 1vw;
 }
 
 .btn {
     background-color: #69B3B5;
     border-radius: 10px;
     border: none;
-    width: 270px;
-    height: 60px;
+    width: 14vw;
+    height: 6vh;
 
-    margin: 100px 315px 90px 315px;
+    margin: 9vh 17vw 7vh 17vw;
     color: white;
 
     font: normal 500 32px/38px Roboto;
@@ -73,7 +70,7 @@
 
 .error-message {
     position: absolute;
-    top: 690px;
-    margin-left: 80px;
+    top: 65vh;
+    margin-left: 4.3vw;
     color: red;
 }

@@ -11,17 +11,17 @@
     font: normal 700 40px/47px Roboto;
     color: #085273;
     
-    margin-left: 420px;
-    padding-top: 87px;
-    margin-bottom: 22px;
+    margin-left: 22vw;
+    padding-top: 8vh;
+    margin-bottom: 2vh;
 }
 
 .label {
     font: normal 400 32px/38px Roboto;
     color:#085273;
 
-    margin-left: 108px;
-    margin-top: 37px;
+    margin-left: 5.6vw;
+    margin-top: 3.4vh;
 }
 
 .input {
@@ -29,12 +29,11 @@
     border-radius: 10px;
     border: none;
 
-    width: 900px;
-    height: 59px;
+    width: 47vw;
+    height: 5.4vh;
 
-    margin-left: 108px;
-    margin-top: 1px;
-    padding: 5px 20px 5px 20px;
+    margin-left: 5.6vw;
+    padding: 0.5vh 2vh;
 
     font: normal 400 22px/28px Roboto;
     color: #085273;
@@ -49,9 +48,9 @@
     border-radius: 10px;
     border: none;
 
-    margin: 45px 452px 70px 452px;
-    width: 229px;
-    height: 59px;
+    margin: 4.1vh 23.5vw 6.5vh 23.5vw;
+    width: 12vw;
+    height: 5.5vh;
 
     font: normal 400 32px/38px Roboto;
     color: #FFFFFF;
@@ -93,9 +92,9 @@
 }
 
 select {
-    min-width: 940px;
-    min-height: 62px;
-    padding: 5px 20px 5px 20px;
+    min-width: 49vw;
+    min-height: 5.7vh;
+    padding: 0.5vh 2vh;
 
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -103,6 +102,6 @@ select {
 }
 
 option {
-    width: 930px;
+    width: 48vw;
 }
 

@@ -46,7 +46,6 @@ async function mudaSenha(req,res) {
 
 async function adicionaCategoria(req,res){
     var usuarios = helper.leArq()
-    console.log(usuarios)
     var teste = 0
     
     for (const user of usuarios) {

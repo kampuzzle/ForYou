@@ -1,0 +1,17 @@
+padrões do backend
+
+router.post('/cadastro',userController.criaUsuario)
+
+{
+    "nomeDeUsuario" : "Amanda",
+    "email" : "email@email",
+    "senha":"senha"
+}
+
+router.post('/login',userController.fazLogin)
+
+{
+    "nomeDeUsuario" : "Amanda",
+    "senha":"senha"
+}
+

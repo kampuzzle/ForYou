@@ -1,50 +1,21 @@
 const User = require('../models/User');
-
-const fs = require("fs");
-
-function leArq(){
-    var usuarios = []
-
-    let rawdata = fs.readFileSync('./data/usuarios.json'); //le o arquivo json
-    let data = JSON.parse(rawdata); //faz o parse do arquivo json
-
-    for (var i=0; i< data.length; i++){
-        //verificar se ja existem usuários com o nome?
-        usuarios.push(data[i])
-    }
-
-    return usuarios
-}
-
-function escreveArq(usuarios){
-    const jsonString = JSON.stringify(usuarios)
-    fs.writeFile('./data/usuarios.json', jsonString, err => {
-        if (err) {
-            console.log('Error writing file', err)
-            return 1
-        } else {
-            console.log('Successfully wrote file')
-            return 0
-        }
-    })
-}
+const helper = require('../helper/fileHandling')
 
 async function criaUsuario(req, res) {
-    var usuarios = leArq()
+    var usuarios = helper.leArq()
     
     const cliente = new User(req.body.nomeDeUsuario,req.body.email,req.body.senha);
     usuarios.push(cliente)
 
-    if (escreveArq(usuarios) == 0){
-        res.send("ok")
+    if (helper.escreveArq(usuarios) === 0){
+        return res.send("ok")
     }
     res.send("erro")
 
 }
 
 async function fazLogin(req,res) {
-    var usuarios = leArq();
-    var login = 0
+    var usuarios = helper.leArq();
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
@@ -58,7 +29,74 @@ async function fazLogin(req,res) {
 
 }
 
+async function mudaSenha(req,res) {
+    var usuarios = helper.leArq()
+
+    for (const user of usuarios) {
+        if ( user.nomeDeUsuario === req.body.nomeDeUsuario) {
+            user.senha = req.body.senha
+        }
+    }
+
+    if (helper.escreveArq(usuarios) === 0){
+        return res.send("ok")
+    }
+    res.send("erro")
+}
+
+async function adicionaCategoria(req,res){
+    var usuarios = helper.leArq()
+    console.log(usuarios)
+    var teste = 0
+    
+    for (const user of usuarios) {
+        console.log(user.nomeDeUsuario)
+        if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
+            console.log(user.categoriasReceita)
+
+            if( req.body.tipo === "Receita"){
+
+                for (const cat of user.categoriasReceita){
+                    if (cat === req.body.categoria){
+                        teste = 1
+                    }
+                }
+
+                if (teste == 0){
+                    user.categoriasReceita.push(req.body.categoria)
+                }
+            }
+
+            else if ( req.body.tipo === "Despesa"){
+
+                for (const cat of user.categoriasDespesa){
+                    if (cat === req.body.categoria){
+                        teste = 1
+                    }
+                }
+
+                if( teste == 0){
+                    user.categoriasDespesa.push(req.body.categoria)
+                }
+            }
+
+        }
+        else{
+            console.log("algo de errado")
+        }
+    }
+
+    if (helper.escreveArq(usuarios) === 0){
+        return res.send("okk")
+    }
+    res.send("erro")
+
+}
+
 module.exports = {
     criaUsuario,
     fazLogin,
+    mudaSenha,
+    adicionaCategoria,
 };
+

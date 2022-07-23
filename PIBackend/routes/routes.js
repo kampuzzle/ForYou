@@ -1,4 +1,5 @@
 const userController = require("../controllers/userController");
+const gastoController = require("../controllers/gastoController")
 const router = require("express").Router();
 
 // essa é a rota para a página princial, quando se abre o site normalmente
@@ -16,4 +17,7 @@ router.get('/home', (req, res) => {
 
 router.post('/cadastro',userController.criaUsuario)
 router.post('/login',userController.fazLogin)
+router.put('/mudaSenha',userController.mudaSenha)
+router.post('/adicionaCategoria', userController.adicionaCategoria)
+router.post('/novoGasto', gastoController.adicionaGasto)
 module.exports = router

@@ -4,15 +4,10 @@ module.exports = class User {
         this.nomeDeUsuario = nomeDeUsuario;
         this.email = email;
         this.senha = senha;
+        this.categoriasReceita = ["Salário", "Rendimento", "Extra"] 
+        this.categoriasDespesas = ["Casa", "Restaurante", "Entretenimento", "Roupas", "Mercado", "Viagem", "Transporte"]
         this.listaDespesas = []
         this.listaReceitas = []
     }
 
-    addCategoriaDespesa(categoria){
-        listaDespesas.push(categoria)
-    }
-
-    addCategoriaReceita(categoria){
-        listaReceitas.push(categoria)
-    }
 }

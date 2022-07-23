@@ -1,32 +1,47 @@
 [
     {
-        "nomeDeUsuario": "amanda",
-        "email": "aaa",
-        "senha": "ajk"
-    },
-    {
-        "nomeDeUsuario": "aeragraea",
-        "email": "aaaerga",
-        "senha": "aegaek"
-    },
-    {
-        "nomeDeUsuario": "amaerga",
-        "email": "aergaaa",
-        "senha": "ahegae"
-    },
-    {
         "nomeDeUsuario": "Amanda",
-        "email": "amanda@gmail",
-        "senha": "senha"
+        "email": "email",
+        "senha": "senha",
+        "categoriasReceita": [
+            "Salário",
+            "Rendimento",
+            "Extra"
+        ],
+        "categoriasDespesa": [
+            "Casa",
+            "Restaurante",
+            "Entretenimento",
+            "Roupas",
+            "Mercado",
+            "Viagem",
+            "Transporte"
+        ],
+        "listaDespesas": [],
+        "listaReceitas": []
     },
     {
-        "nomeDeUsuario": "Amanda",
-        "email": "amanda@gmail",
-        "senha": "senha"
-    },
-    {
-        "nomeDeUsuario": "Amanda",
-        "email": "amanda@gmail",
-        "senha": "senha"
+        "nomeDeUsuario": "LEO",
+        "email": "email",
+        "senha": "senha",
+        "categoriasReceita": [
+            "Salário",
+            "Rendimento",
+            "Extra",
+            "bebida",
+            "caiu do ceu"
+        ],
+        "categoriasDespesa": [
+            "Casa",
+            "Restaurante",
+            "Entretenimento",
+            "Roupas",
+            "Mercado",
+            "Viagem",
+            "Transporte",
+            "bebida"
+        ],
+        "listaDespesas": [],
+        "listaReceitas": []
     }
 ]

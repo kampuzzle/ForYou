@@ -19,6 +19,7 @@
         ],
         "listaDespesas": [
             {
+                "id": 1,
                 "descricao": "móveis",
                 "data": "12/06/2022",
                 "valor": 524.75,
@@ -27,16 +28,25 @@
         ],
         "listaReceitas": [
             {
-                "descricao": "meu salario julho",
-                "data": "07/07/2022",
-                "valor": 1000,
-                "categoria": "Salário"
-            },
-            {
                 "descricao": "meu salario agosto",
                 "data": "07/08/2022",
                 "valor": 1000,
-                "categoria": "Salário"
+                "categoria": "Salário",
+                "id": 1
+            },
+            {
+                "descricao": "teste ok",
+                "data": "12/06/2022",
+                "valor": 100.35,
+                "categoria": "Casa",
+                "id": 2
+            },
+            {
+                "descricao": "eletrodomesticos",
+                "data": "12/06/2022",
+                "valor": 100.35,
+                "categoria": "Casa",
+                "id": 3
             }
         ]
     },

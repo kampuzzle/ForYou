@@ -20,9 +20,10 @@ router.post('/login',userController.fazLogin)
 router.put('/mudaSenha',userController.mudaSenha)
 router.post('/adicionaCategoria', userController.adicionaCategoria)
 
-router.post('/novoGasto', gastoController.adicionaGasto)
-router.put('/attGasto',gastoController.atualizaGasto)
-router.delete('/deleteGasto',gastoController.deleteGasto)
-router.get('getCategoria',gastoController.getCategoria)
+router.post('/novaMovimentacao', gastoController.adicionaMovimentacao)
+router.put('/atualizaMovimentacao',gastoController.atualizaMovimentacao)
+router.delete('/deleteMovimentacao',gastoController.deleteMovimentacao)
+router.get('/getExtratoMes',gastoController.getExtratoMes)
+router.get('/getCategoria',gastoController.getCategoriaMes)
 
 module.exports = router

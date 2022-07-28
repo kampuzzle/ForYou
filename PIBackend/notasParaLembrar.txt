@@ -15,3 +15,23 @@ router.post('/login',userController.fazLogin)
     "senha":"senha"
 }
 
+router.put('/mudaSenha',userController.mudaSenha)
+
+
+router.post('/adicionaCategoria', userController.adicionaCategoria)
+
+router.post('/novaMovimentacao', gastoController.adicionaMovimentacao)
+
+
+router.put('/atualizaMovimentacao',gastoController.atualizaMovimentacao)
+
+
+router.delete('/deleteMovimentacao',gastoController.deleteMovimentacao)
+
+
+
+router.get('getCategoriaMes',gastoController.getCategoriaMes)
+
+
+
+

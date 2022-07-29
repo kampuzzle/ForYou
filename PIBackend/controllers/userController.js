@@ -49,15 +49,14 @@ async function adicionaCategoria(req,res){
     var teste = 0
     
     for (const user of usuarios) {
-        console.log(user.nomeDeUsuario)
+   
         if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
-            console.log(user.categoriasReceita)
 
             if( req.body.tipo === "Receita"){
 
                 for (const cat of user.categoriasReceita){
                     if (cat === req.body.categoria){
-                        teste = 1
+                        teste = 1 //verifica se a categoria já existe
                     }
                 }
 

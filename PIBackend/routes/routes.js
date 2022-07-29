@@ -23,6 +23,7 @@ router.post('/adicionaCategoria', userController.adicionaCategoria)
 router.post('/novoGasto', gastoController.adicionaGasto)
 router.put('/attGasto',gastoController.atualizaGasto)
 router.delete('/deleteGasto',gastoController.deleteGasto)
-router.get('getCategoria',gastoController.getCategoria)
+router.get('/getCategoria/:User/:Tipo',gastoController.getCategorias)
+router.get('/getMovimentacoes/:User/:Tipo',gastoController.getGastos)
 
 module.exports = router

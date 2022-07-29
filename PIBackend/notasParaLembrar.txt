@@ -15,3 +15,57 @@ router.post('/login',userController.fazLogin)
     "senha":"senha"
 }
 
+router.put('/mudaSenha',userController.mudaSenha)
+
+{
+    "nomeDeUsuario" : "Amanda",
+    "senha":"senhamudada"
+}
+
+router.post('/adicionaCategoria', userController.adicionaCategoria)
+
+{
+    "nomeDeUsuario" : "Amanda",
+    "tipo" : "Receita",
+    "categoria":"Extra"
+}
+
+router.post('/novoGasto', gastoController.adicionaGasto)
+
+{
+    "nomeDeUsuario" : "Amanda",
+    "tipo" : "Receita",
+    "categoria":"Extra",
+    "descricao":"achei dinheiro na rua",
+    "data":"21/04/2022",
+    "valor": "15.0"
+    
+}
+
+router.put('/attGasto',gastoController.atualizaGasto)
+
+{
+    
+}
+
+router.delete('/deleteGasto',gastoController.deleteGasto)
+
+{
+    "nomeDeUsuario" : "Amanda",
+    "tipo" : "Receita",
+    "id":0
+}
+
+GET /getCategoria/Amanda/Despesa
+
+(vc vai receber um json assim, se for ruim eu mudo sla n sei qual o padrão)
+
+[
+    "Casa",
+    "Restaurante",
+    "Entretenimento",
+    "Roupas",
+    "Mercado",
+    "Viagem",
+    "Transporte"
+]

@@ -37,7 +37,7 @@ router.post('/novoGasto', gastoController.adicionaGasto)
     "tipo" : "Receita",
     "categoria":"Extra",
     "descricao":"achei dinheiro na rua",
-    "data":"21/04/2022",
+    "data":"1659278670",
     "valor": "15.0"
     
 }
@@ -56,10 +56,12 @@ router.delete('/deleteGasto',gastoController.deleteGasto)
     "id":0
 }
 
-GET /getCategoria/Amanda/Despesa
+GET '/getMovimentacoes/:User/:Tipo/:Mes'
+GET /getCategoria/Amanda/Despesa/6
 
 (vc vai receber um json assim, se for ruim eu mudo sla n sei qual o padrão)
 
+res:
 [
     "Casa",
     "Restaurante",
@@ -68,4 +70,29 @@ GET /getCategoria/Amanda/Despesa
     "Mercado",
     "Viagem",
     "Transporte"
+]
+
+GET '/getMovCateg/:User/:Tipo/:Mes/:Categoria'
+GET /getMovCateg/Amanda/Receita/8/Salário
+
+res:
+[
+    {
+        "descricao": "salário do mes de setembro",
+        "ano": 2022,
+        "mes": 7,
+        "dia": 31,
+        "valor": "500",
+        "categoria": "Salário",
+        "id": 0
+    },
+    {
+        "descricao": "hora extra",
+        "ano": 2022,
+        "mes": 7,
+        "dia": 31,
+        "valor": "500",
+        "categoria": "Salário",
+        "id": 0
+    }
 ]

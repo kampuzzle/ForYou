@@ -15,16 +15,18 @@ async function adicionaGasto(req,res){
     const newGasto = new Gasto(req.body.descricao,req.body.data * 1000,req.body.valor,req.body.categoria)
     //ADICIONAR OU REMOVER O SALDO
 
-    console.log(newGasto.ano, newGasto.mes, newGasto.dia)
+    //console.log(newGasto.ano, newGasto.mes, newGasto.dia)
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
 
             if (req.body.tipo === "Receita"){
-                //a id é um a mais do q a ultima id
 
+                user.saldoAtual += (req.body).valor;
+
+                //a id é um a mais do q a ultima id
                 if ( (user.listaReceitas).length > 0){
-                    console.log("ok")
+                    console.log(user.saldoAtual);
                     id = (user.listaReceitas[(user.listaReceitas).length - 1]).id + 1;
                 }
                 
@@ -33,7 +35,12 @@ async function adicionaGasto(req,res){
                 
             }
             else if (req.body.tipo === "Despesa") {
-                let id = (user.listaDespesas[(user.listaDespesas).length - 1]).id + 1;
+                user.saldoAtual -= (req.body).valor;
+
+                if ( (user.listaDespesas).length > 0){
+                    id = (user.listaDespesas[(user.listaDespesas).length - 1]).id + 1;
+                }
+            
                 (user.listaDespesas).push(newGasto);
                 newGasto.setId(id);
             }
@@ -63,9 +70,13 @@ async function atualizaGasto(req, res){
                             gasto.categoria = req.body.categoria
                         }
                         if (req.body.data != null){
-                            gasto.data = req.body.data
+                            let dataCompleta = new Date(req.body.data * 1000);
+                            gasto.ano = dataCompleta.getFullYear();
+                            gasto.mes = dataCompleta.getMonth() + 1;
+                            gasto.dia = dataCompleta.getDate();
                         }
                         if (req.body.valor != null){
+                            user.saldoAtual += req.body.valor;
                             gasto.valor = req.body.valor
                         }
                     }
@@ -85,6 +96,7 @@ async function atualizaGasto(req, res){
                             gasto.data = req.body.data
                         }
                         if (req.body.valor != null){
+                            user.saldoAtual -= req.body.valor;
                             gasto.valor = req.body.valor
                         }
                     }
@@ -112,7 +124,8 @@ async function deleteGasto(req, res){
                     if ( req.body.id === gasto.id){
                         (user.listaReceitas).splice(id,1);
                         helper.escreveArq(usuarios);
-                        res.status(200);
+                        return res.send("ok")
+                        //return res.status(200);
                         break;
                     }
                     id += 1
@@ -122,9 +135,10 @@ async function deleteGasto(req, res){
             else if (req.body.tipo === "Despesa") {
                 for ( const gasto of user.listaDespesas){
                     if ( req.body.id === gasto.id){
-                        user.listaDespesas.splice(id);
+                        user.listaDespesas.splice(id,1);
                         helper.escreveArq(usuarios);
-                        res.status(200);
+                        return res.send("ok")
+                        //return res.status(200);
                         break;
                     }
                     id +=1
@@ -229,18 +243,33 @@ async function getGastosPorCategoria(req,res){
 
 async function getSaldos(req,res){
     var usuarios = helper.leArq();
-    var saldoInicial = 0;
+    var mes = req.params['Mes']
+    var saldoIni = 0; //quanto tinha no começo do mes
+    var gastoAtual = 0; //quanto gastou no mes
     var saldoAtual = 0;
-    var gastoAtual = 0;
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
+            saldoAtual = user.saldoAtual;
 
-            
+            for (const receita of user.listaReceitas){
+                if (receita.mes != mes){
+                    saldoIni += receita.valor;
+                }
+            }
+            for (const despesa of user.listaDespesas){
+                if (despesa.mes != mes){
+                    saldoIni -= despesa.valor;
+                }
+                else{
+                    gastoAtual += despesa.valor;
+                }
+            }
         }
     }
-}
 
+    res.end(JSON.stringify({ saldoInicial: saldoIni, gastoMes: gastoAtual, saldoAtual: saldoAtual}));
+}
 
 module.exports = {
     adicionaGasto,
@@ -249,4 +278,5 @@ module.exports = {
     getCategorias,
     getGastos,
     getGastosPorCategoria,
+    getSaldos,
 };

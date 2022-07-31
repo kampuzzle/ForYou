@@ -1,14 +1,15 @@
 [
     {
         "nomeDeUsuario": "Amanda",
-        "email": "email",
+        "email": "email@email",
         "senha": "senha",
         "categoriasReceita": [
             "Salário",
             "Rendimento",
-            "Extra"
+            "Extra",
+            "Jogo do bixo"
         ],
-        "categoriasDespesa": [
+        "categoriasDespesas": [
             "Casa",
             "Restaurante",
             "Entretenimento",
@@ -19,47 +20,35 @@
         ],
         "listaDespesas": [
             {
-                "descricao": "móveis",
-                "data": "12/06/2022",
-                "valor": 524.75,
-                "categoria": "Casa",
-                "id": 0
+                "descricao": "roupas na shein",
+                "ano": 2022,
+                "mes": 8,
+                "dia": 1,
+                "valor": 150,
+                "categoria": "Roupas",
+                "id": 1
+            },
+            {
+                "descricao": "vestido na riachuelo",
+                "ano": 2022,
+                "mes": 8,
+                "dia": 1,
+                "valor": 150,
+                "categoria": "Roupas",
+                "id": 2
             }
         ],
         "listaReceitas": [
             {
-                "descricao": "achei dinheiro na rua",
+                "descricao": "salário agosto",
                 "ano": 2022,
-                "mes": 7,
-                "dia": 31,
-                "valor": "15.0",
-                "categoria": "Extra",
-                "id": 0
+                "mes": 8,
+                "dia": 1,
+                "valor": 3500,
+                "categoria": "Salário",
+                "id": 3
             }
-        ]
-    },
-    {
-        "nomeDeUsuario": "Leo",
-        "email": "email",
-        "senha": "senha",
-        "categoriasReceita": [
-            "Salário",
-            "Rendimento",
-            "Extra",
-            "bebida",
-            "caiu do ceu"
         ],
-        "categoriasDespesa": [
-            "Casa",
-            "Restaurante",
-            "Entretenimento",
-            "Roupas",
-            "Mercado",
-            "Viagem",
-            "Transporte",
-            "bebida"
-        ],
-        "listaDespesas": [],
-        "listaReceitas": []
+        "saldoAtual": 3865
     }
 ]

@@ -25,7 +25,7 @@ async function fazLogin(req,res) {
             }
         }
     }
-    res.send("Erro")
+    res.send("Erro - senha incorreta")
 
 }
 
@@ -85,7 +85,7 @@ async function adicionaCategoria(req,res){
     }
 
     if (helper.escreveArq(usuarios) === 0){
-        return res.send("okk")
+        return res.send("ok")
     }
     res.send("erro")
 

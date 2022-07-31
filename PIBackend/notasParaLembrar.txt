@@ -1,6 +1,6 @@
 padrões do backend
 
-router.post('/cadastro',userController.criaUsuario)
+POST '/cadastro'
 
 {
     "nomeDeUsuario" : "Amanda",
@@ -8,29 +8,29 @@ router.post('/cadastro',userController.criaUsuario)
     "senha":"senha"
 }
 
-router.post('/login',userController.fazLogin)
+POST '/login'
 
 {
     "nomeDeUsuario" : "Amanda",
     "senha":"senha"
 }
 
-router.put('/mudaSenha',userController.mudaSenha)
+PUT '/mudaSenha'
 
 {
     "nomeDeUsuario" : "Amanda",
     "senha":"senhamudada"
 }
 
-router.post('/adicionaCategoria', userController.adicionaCategoria)
+POST '/adicionaCategoria'
 
 {
     "nomeDeUsuario" : "Amanda",
     "tipo" : "Receita",
-    "categoria":"Extra"
+    "categoria":"Jogo do bixo"
 }
 
-router.post('/novoGasto', gastoController.adicionaGasto)
+POST '/novaMovimentacao'
 
 {
     "nomeDeUsuario" : "Amanda",
@@ -38,17 +38,24 @@ router.post('/novoGasto', gastoController.adicionaGasto)
     "categoria":"Extra",
     "descricao":"achei dinheiro na rua",
     "data":"1659278670",
-    "valor": "15.0"
+    "valor": 15.0
     
 }
 
-router.put('/attGasto',gastoController.atualizaGasto)
+PUT '/attMovimentacao'
 
+//o que n quiser atualizar so mandar ""
 {
-    
+    "nomeDeUsuario" : "Amanda",
+    "id":1,
+    "tipo" : "Receita",
+    "descricao": "salário julho",
+    "data": "",
+    "categoria":"",
+    "valor":150
 }
 
-router.delete('/deleteGasto',gastoController.deleteGasto)
+DELETE'/deleteMovimentacao'
 
 {
     "nomeDeUsuario" : "Amanda",
@@ -96,3 +103,11 @@ res:
         "id": 0
     }
 ]
+
+GET '/getSaldos/Amanda/8'
+GET '/getSaldos/:User/:Mes'
+
+res:
+{"saldoInicial":50,
+ "gastoMes":250,
+ "saldoAtual":50}

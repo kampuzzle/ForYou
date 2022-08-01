@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   public login(username: string, password: string): void {
@@ -35,4 +35,7 @@ export class LoginComponent implements OnInit {
     // )
   }
 
+  register(): void {
+    this.router.navigate(['/register']);
+  }
 }

@@ -1,0 +1,62 @@
+.background {
+  background-image: url("../../../assets/home-background.jpg");
+  background-size: cover;
+  margin: -8px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 37vw;
+  height: 67vh;
+  background-color: #ECCBCB;
+  border-radius: 30px;
+}
+
+.title {
+  font: normal 500 48px/56px Roboto;
+  display: flex;
+  justify-content: center;
+  color: #085273;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.label {
+  font: normal 500 22px/24px Roboto;
+  color: #085273;
+  margin: 2vh 3vw 0 3vw;
+}
+
+.input {
+  background: #C4C4C4;
+  border-radius: 10px;
+  border: none;
+  width: 31vw;
+  height: 5vh;
+  margin-left: 3vw;
+  padding-left: 1vh;
+  font: normal 300 18px/22px Roboto;
+  color: #3b3a3a;
+}
+
+.button {
+  background-color: #69B3B5;
+  border-radius: 10px;
+  border: none;
+  width: 10vw;
+  height: 5vh;
+
+  margin: 5vh 13vw;
+  color: white;
+
+  font: normal 500 24px/28px Roboto;
+}
+
+.button:disabled {
+  background-color: #828387;
+  color: #bcbbbb;
+}

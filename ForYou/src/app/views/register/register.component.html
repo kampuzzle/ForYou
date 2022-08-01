@@ -1,0 +1,23 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,500;1,700&display=swap" rel="stylesheet">
+
+<div class="background">
+  <div class="container" [formGroup]="form">
+
+    <div class="title">CRIAR CONTA?</div>
+
+    <div class="label">NOME DE USUÁRIO</div>
+    <input class="input" formControlName="username" required>
+
+    <div class="label">EMAIL</div>
+    <input class="input" formControlName="email" required>
+
+    <div class="label">SENHA</div>
+    <input class="input" formControlName="password" required>
+
+    <div class="label">CONFIRMAR SENHA</div>
+    <input class="input" formControlName="confirmPassword" required>
+
+    <button class="button" [disabled]="!form.valid" (click)="register()">CRIAR</button>
+
+  </div>
+</div>

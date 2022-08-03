@@ -1,6 +1,6 @@
 padrões do backend
 
-router.post('/cadastro',userController.criaUsuario)
+POST '/cadastro'
 
 {
     "nomeDeUsuario" : "Amanda",
@@ -8,30 +8,106 @@ router.post('/cadastro',userController.criaUsuario)
     "senha":"senha"
 }
 
-router.post('/login',userController.fazLogin)
+POST '/login'
 
 {
     "nomeDeUsuario" : "Amanda",
     "senha":"senha"
 }
 
-router.put('/mudaSenha',userController.mudaSenha)
+PUT '/mudaSenha'
 
+{
+    "nomeDeUsuario" : "Amanda",
+    "senha":"senhamudada"
+}
 
-router.post('/adicionaCategoria', userController.adicionaCategoria)
+POST '/adicionaCategoria'
 
-router.post('/novaMovimentacao', gastoController.adicionaMovimentacao)
+{
+    "nomeDeUsuario" : "Amanda",
+    "tipo" : "Receita",
+    "categoria":"Jogo do bixo"
+}
 
+POST '/novaMovimentacao'
 
-router.put('/atualizaMovimentacao',gastoController.atualizaMovimentacao)
+{
+    "nomeDeUsuario" : "Amanda",
+    "tipo" : "Receita",
+    "categoria":"Extra",
+    "descricao":"achei dinheiro na rua",
+    "data":"1659278670",
+    "valor": 15.0
+    
+}
 
+PUT '/attMovimentacao'
 
-router.delete('/deleteMovimentacao',gastoController.deleteMovimentacao)
+//o que n quiser atualizar so mandar ""
+{
+    "nomeDeUsuario" : "Amanda",
+    "id":1,
+    "tipo" : "Receita",
+    "descricao": "salário julho",
+    "data": "",
+    "categoria":"",
+    "valor":150
+}
 
+DELETE'/deleteMovimentacao'
 
+{
+    "nomeDeUsuario" : "Amanda",
+    "tipo" : "Receita",
+    "id":0
+}
 
-router.get('getCategoriaMes',gastoController.getCategoriaMes)
+GET '/getMovimentacoes/:User/:Tipo/:Mes'
+GET /getCategoria/Amanda/Despesa/6
 
+(vc vai receber um json assim, se for ruim eu mudo sla n sei qual o padrão)
 
+res:
+[
+    "Casa",
+    "Restaurante",
+    "Entretenimento",
+    "Roupas",
+    "Mercado",
+    "Viagem",
+    "Transporte"
+]
 
+GET '/getMovCateg/:User/:Tipo/:Mes/:Categoria'
+GET /getMovCateg/Amanda/Receita/8/Salário
 
+res:
+[
+    {
+        "descricao": "salário do mes de setembro",
+        "ano": 2022,
+        "mes": 7,
+        "dia": 31,
+        "valor": "500",
+        "categoria": "Salário",
+        "id": 0
+    },
+    {
+        "descricao": "hora extra",
+        "ano": 2022,
+        "mes": 7,
+        "dia": 31,
+        "valor": "500",
+        "categoria": "Salário",
+        "id": 0
+    }
+]
+
+GET '/getSaldos/Amanda/8'
+GET '/getSaldos/:User/:Mes'
+
+res:
+{"saldoInicial":50,
+ "gastoMes":250,
+ "saldoAtual":50}

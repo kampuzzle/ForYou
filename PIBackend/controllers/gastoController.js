@@ -2,34 +2,60 @@ const User = require('../models/User');
 const Gasto = require('../models/Gasto');
 const helper = require('../helper/fileHandling');
 
-async function adicionaMovimentacao(req,res){
-    var usuarios = helper.leArq()
+/*
+var month = (newGasto.data).getMonth() + 1; //months from 1-12
+var day = (newGasto.data).getDate();
+var year = (newGasto.data).getFullYear();
+*/
 
-    const newGasto = new Gasto(req.body.descricao,req.body.data,req.body.valor,req.body.categoria)
+async function adicionaGasto(req,res){
+    var usuarios = helper.leArq()
+    let id = 0
+
+    const newGasto = new Gasto(req.body.descricao,req.body.data * 1000,req.body.valor,req.body.categoria)
+    //ADICIONAR OU REMOVER O SALDO
+
+    //console.log(newGasto.ano, newGasto.mes, newGasto.dia)
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
 
             if (req.body.tipo === "Receita"){
-                newGasto.setId((user.listaReceitas).length);
-                (user.listaReceitas).push(newGasto);
 
+                user.saldoAtual += (req.body).valor;
+
+                //a id é um a mais do q a ultima id
+                if ( (user.listaReceitas).length > 0){
+                    console.log(user.saldoAtual);
+                    id = (user.listaReceitas[(user.listaReceitas).length - 1]).id + 1;
+                }
+                
+                (user.listaReceitas).push(newGasto);
+                newGasto.setId(id);
                 
             }
             else if (req.body.tipo === "Despesa") {
-                (user.listaDespesas).push(newGasto)
+                user.saldoAtual -= (req.body).valor;
+
+                if ( (user.listaDespesas).length > 0){
+                    id = (user.listaDespesas[(user.listaDespesas).length - 1]).id + 1;
+                }
+            
+                (user.listaDespesas).push(newGasto);
+                newGasto.setId(id);
             }
         }
     }
-
+    console.log(newGasto)
     if (helper.escreveArq(usuarios) === 0){
         return res.send("ok")
     }
     res.send("erro")
 }
 
-async function atualizaMovimentacao(req, res){
+async function atualizaGasto(req, res){
     var usuarios = helper.leArq()
+    //ATUALIZAR O SALDO
 
     for (const user of usuarios) {
         if(user.nomeDeUsuario === req.body.nomeDeUsuario) {
@@ -44,9 +70,13 @@ async function atualizaMovimentacao(req, res){
                             gasto.categoria = req.body.categoria
                         }
                         if (req.body.data != null){
-                            gasto.data = req.body.data
+                            let dataCompleta = new Date(req.body.data * 1000);
+                            gasto.ano = dataCompleta.getFullYear();
+                            gasto.mes = dataCompleta.getMonth() + 1;
+                            gasto.dia = dataCompleta.getDate();
                         }
                         if (req.body.valor != null){
+                            user.saldoAtual += req.body.valor;
                             gasto.valor = req.body.valor
                         }
                     }
@@ -66,6 +96,7 @@ async function atualizaMovimentacao(req, res){
                             gasto.data = req.body.data
                         }
                         if (req.body.valor != null){
+                            user.saldoAtual -= req.body.valor;
                             gasto.valor = req.body.valor
                         }
                     }
@@ -81,7 +112,7 @@ async function atualizaMovimentacao(req, res){
 
 }
 
-async function deleteMovimentacao(req, res){
+async function deleteGasto(req, res){
     var usuarios = helper.leArq()
     var id = 0
 
@@ -93,7 +124,8 @@ async function deleteMovimentacao(req, res){
                     if ( req.body.id === gasto.id){
                         (user.listaReceitas).splice(id,1);
                         helper.escreveArq(usuarios);
-                        res.status(200);
+                        return res.send("ok")
+                        //return res.status(200);
                         break;
                     }
                     id += 1
@@ -103,9 +135,10 @@ async function deleteMovimentacao(req, res){
             else if (req.body.tipo === "Despesa") {
                 for ( const gasto of user.listaDespesas){
                     if ( req.body.id === gasto.id){
-                        user.listaDespesas.splice(id);
+                        user.listaDespesas.splice(id,1);
                         helper.escreveArq(usuarios);
-                        res.status(200);
+                        return res.send("ok")
+                        //return res.status(200);
                         break;
                     }
                     id +=1
@@ -115,40 +148,135 @@ async function deleteMovimentacao(req, res){
     }
 }
 
-async function getExtratoMes(req,res){
+async function getCategorias(req, res){
+    var usuarios = helper.leArq();
+
     for (const user of usuarios) {
-        if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
+        if( user.nomeDeUsuario === req.params['User']) {
 
-            if (req.body.tipo === "Receita"){
-                for (const gasto of user.listaReceitas){
-                    
-                }
-        
+            if (req.params['Tipo'] === "Receita"){
+                console.log(JSON.stringify(user.categoriasReceita))
+                return res.json(user.categoriasReceita)
+                
             }
-            else if (req.body.tipo === "Despesa") {
-                for ( const gasto of user.listaDespesas){
-                    if ( req.body.id === gasto.id){
-                        
-                        helper.escreveArq(usuarios);
-                        res.status(200);
-                        break;
-                    }
-                    id +=1
-                }
+            else if (req.params['Tipo'] === "Despesa") {
+                console.log(JSON.stringify(user.categoriasDespesa))
+                return res.json(user.categoriasDespesa)
             }
         }
     }
 }
 
-async function getCategoriaMes(req, res){
-    
+
+async function getGastos(req,res){
+    var usuarios = helper.leArq();
+    var mes = req.params['Mes']
+    var listaMovimentacoes = []
+
+    for (const user of usuarios) {
+        if( user.nomeDeUsuario === req.params['User']) {
+
+            if (req.params['Tipo'] === "Receita"){
+
+                for (const receita of user.listaReceitas){
+                    if (receita.mes == mes){
+                        listaMovimentacoes.push(receita)
+                    }
+
+                }
+                console.log(JSON.stringify(listaMovimentacoes))
+                return res.json(listaMovimentacoes)
+
+            }
+            else if (req.params['Tipo'] === "Despesa") {
+               
+                for (const gasto of user.listaDespesas){
+                    if (gasto.mes == mes){
+                        listaMovimentacoes.push(gasto)
+                    }
+                }
+                console.log(JSON.stringify(listaMovimentacoes))
+                return res.json(listaMovimentacoes)
+            }
+        }
+    }
 }
 
+
+async function getGastosPorCategoria(req,res){
+    var usuarios = helper.leArq();
+    var mes = req.params['Mes']
+    var categoria = req.params['Categoria']
+    var listaMovimentacoesCateg = []
+
+    for (const user of usuarios) {
+        if( user.nomeDeUsuario === req.params['User']) {
+
+            if (req.params['Tipo'] === "Receita"){
+
+                for (const receita of user.listaReceitas){
+                    if (receita.mes == mes){
+                        if (receita.categoria === categoria){
+                            listaMovimentacoesCateg.push(receita)
+                        }
+                    }
+                }
+                console.log(JSON.stringify(listaMovimentacoesCateg))
+                return res.json(listaMovimentacoesCateg)
+
+            }
+            else if (req.params['Tipo'] === "Despesa") {
+               
+                for (const gasto of user.listaDespesas){
+                    if (gasto.mes == mes){
+                        if (receita.categoria === categoria){
+                            listaMovimentacoesCateg.push(gasto)
+                        }
+                    }
+                }
+                console.log(JSON.stringify(listaMovimentacoesCateg))
+                return res.json(listaMovimentacoesCateg)
+            }
+        }
+    }
+}
+
+async function getSaldos(req,res){
+    var usuarios = helper.leArq();
+    var mes = req.params['Mes']
+    var saldoIni = 0; //quanto tinha no começo do mes
+    var gastoAtual = 0; //quanto gastou no mes
+    var saldoAtual = 0;
+
+    for (const user of usuarios) {
+        if( user.nomeDeUsuario === req.params['User']) {
+            saldoAtual = user.saldoAtual;
+
+            for (const receita of user.listaReceitas){
+                if (receita.mes != mes){
+                    saldoIni += receita.valor;
+                }
+            }
+            for (const despesa of user.listaDespesas){
+                if (despesa.mes != mes){
+                    saldoIni -= despesa.valor;
+                }
+                else{
+                    gastoAtual += despesa.valor;
+                }
+            }
+        }
+    }
+
+    res.end(JSON.stringify({ saldoInicial: saldoIni, gastoMes: gastoAtual, saldoAtual: saldoAtual}));
+}
 
 module.exports = {
-    adicionaMovimentacao,
-    atualizaMovimentacao,
-    deleteMovimentacao,
-    getExtratoMes,
-    getCategoriaMes,
+    adicionaGasto,
+    atualizaGasto,
+    deleteGasto,
+    getCategorias,
+    getGastos,
+    getGastosPorCategoria,
+    getSaldos,
 };

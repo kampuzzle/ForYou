@@ -1,0 +1,13 @@
+version: '3'
+
+services: 
+  docker-backend:
+    container_name: 'pibackend'
+    image: 'pibackend'
+    build: .
+    command: sh -c "npm install && npm start"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../:/PIBackend
+    user: "node"

@@ -8,6 +8,7 @@ module.exports = class User {
         this.categoriasDespesas = ["Casa", "Restaurante", "Entretenimento", "Roupas", "Mercado", "Viagem", "Transporte"]
         this.listaDespesas = []
         this.listaReceitas = []
+        this.saldoAtual = 0.0
     }
 
 }

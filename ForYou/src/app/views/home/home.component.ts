@@ -10,6 +10,7 @@ import { CrudService } from 'src/app/services/crud.service';
 export class HomeComponent implements OnInit {
 
   month: string = 'Janeiro';
+  user: any = '';
   monthList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
   extratos = [];
 
@@ -41,6 +42,9 @@ export class HomeComponent implements OnInit {
     this.crudService.getAll('/extrato').subscribe(extratos => {
       this.extratos = extratos;
     });
+    this.crudService.getAll('/getUser').subscribe(user => {
+      this.user = user;
+    });
   }
 
   decrement() {
@@ -59,8 +63,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/new-income']);
   }
 
-  extratoCategoria(categoria: string) {
-    this.crudService.getAll('/getMovimentacao/'+categoria+ '/'+this.month).subscribe(extratos => {
+  extratoCategoria(categoria: string, tipo: string) {
+    this.crudService.getAll('/getMovimentacao/' + this.user + '/' + tipo + '/' + this.month + '/' + categoria).subscribe(extratos => {
       this.extratos = extratos;
     })
   }

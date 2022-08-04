@@ -10,7 +10,7 @@
         <mat-tab-group mat-align-tabs="center" class="tab" style="min-width: 0; width: 100%">
 
             <mat-tab class="label" label="Despesas">
-                <div class="content" *ngFor="let despesa of despesas">
+                <div class="content" (click)="extratoCategoria(despesa.nome)" *ngFor="let despesa of despesas">
                     <span class="material-icons" id="icons">{{ despesa.icon }}</span>
                     {{ despesa.nome }}
                 </div>
@@ -40,7 +40,10 @@
     <div class="box" id="box2">
 
         <p>EXTRATO</p>
-
+        <div class="content" *ngFor="let extrato of extratos">
+            <span class="material-icons" id="icons">fiber_manual_record</span>
+            {{ extrato }}
+        </div>
 
     </div>
 </div>

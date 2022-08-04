@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    this.crudService.create(this.form.value, '/cadastrar').subscribe(register => {
+    this.crudService.create(this.form.value, '/cadastro').subscribe(register => {
       console.log(register);
     }), (err: any) => {
       console.log(err);

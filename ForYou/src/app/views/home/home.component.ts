@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log("djfksjdfs");
+    // console.log(this.listMovimentacao);
   }
 
   decrement() {

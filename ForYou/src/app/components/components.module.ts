@@ -5,11 +5,13 @@ import { RouterModule } from "@angular/router";
 import { NewComponent } from "./new/new.component";
 import { CurrencyMaskModule } from "ng2-currency-mask"; 
 import { HttpClientModule } from "@angular/common/http";
+import { NewCategoryComponent } from './new-category/new-category.component';
 
 
 @NgModule({
     declarations: [
-        NewComponent
+        NewComponent,
+        NewCategoryComponent
     ],
     imports: [
         CommonModule,

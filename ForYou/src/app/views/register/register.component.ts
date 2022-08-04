@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
   selector: 'app-register',
@@ -15,13 +16,18 @@ export class RegisterComponent implements OnInit {
     confirmPassword: new FormControl ('')
   })
 
-  constructor() { }
+  constructor(private crudService: CrudService) { }
 
   ngOnInit(): void {
   }
 
   register(): void {
-    console.log(this.form.value);
+    this.crudService.create(this.form.value, '/cadastrar').subscribe(register => {
+      console.log(register);
+    }), (err: any) => {
+      console.log(err);
+    }
   }
+
 
 }

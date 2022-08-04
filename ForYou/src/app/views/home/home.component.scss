@@ -13,7 +13,7 @@
     background: rgb(244, 190, 186);
     border-radius: 10px;
     width: 21vw;
-    height: 85vh;  
+    height: 85vh;
 }
 
 #center {
@@ -60,17 +60,26 @@ p {
     margin-top: 60vh;
 }
 
+#receita:hover {
+  color: rgb(30, 106, 26);
+}
+
 #despesa {
     color: #E73434;
     transform: scale(6);
     margin-left: 12vw;
     margin-top: 60vh;
+
+  }
+
+#despesa:hover {
+    color: rgb(125, 41, 35);
 }
 
 // MAT TAB
 mat-tab-group {
-   font: normal 300 24px/28px Roboto;  
-   min-width: 0; 
+   font: normal 300 24px/28px Roboto;
+   min-width: 0;
    justify-content: flex-end;
    transform: none;
    transition: none;
@@ -81,11 +90,12 @@ mat-tab-group {
 }
 
 .content {
-    font: normal 300 20px/28px Roboto;  
+    font: normal 300 20px/28px Roboto;
     margin-top: 2.7vh;
     text-align: center;
+    cursor: pointer;
 }
-  
+
 ::ng-deep .mat-tab-list .mat-tab-label {
     color: #085273;
     margin-top: 0.9vh;

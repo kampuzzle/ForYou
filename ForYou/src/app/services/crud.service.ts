@@ -14,8 +14,9 @@ export class CrudService {
     private backendService: BackendService
   ) { }
 
-  public create(item: any): Observable<any> {
-    return this.backendService.post(this.Url, item).pipe(
+  public create(item: any, Url:any): Observable<any> {
+    console.log(item);
+    return this.backendService.post(Url, item).pipe(
       map((res: any) => new this.class(res.resp)),
       catchError((err) => {
         throw err;
@@ -23,8 +24,8 @@ export class CrudService {
     )
   }
 
-  public update(item: any): Observable<any> {
-    return this.backendService.put(this.Url, item).pipe(
+  public update(item: any, Url: any): Observable<any> {
+    return this.backendService.put(Url, item).pipe(
       map((res: any) => new this.class(res.resp)),
       catchError((err) => {
         throw err;
@@ -32,8 +33,8 @@ export class CrudService {
     )
   }
 
-  public delete(item: any): Observable<any> {
-    return this.backendService.delete(this.Url, item).pipe(
+  public delete(item: any, Url: any): Observable<any> {
+    return this.backendService.delete(Url, item).pipe(
       map((res: any) => {
         return res;
       },
@@ -43,8 +44,8 @@ export class CrudService {
     )
   }
 
-  public getAll(): Observable<any> {
-    return this.backendService.getAll(this.Url).pipe(
+  public getAll(Url: any): Observable<any> {
+    return this.backendService.getAll(Url).pipe(
       map((res: any) => {
         return res;
       },

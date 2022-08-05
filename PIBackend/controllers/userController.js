@@ -22,26 +22,12 @@ async function fazLogin(req,res) {
 
             if (user.senha === req.body.senha){
                 return res.send("Ok")
+                
             }
         }
     }
     res.send("Erro - senha incorreta")
 
-}
-
-async function mudaSenha(req,res) {
-    var usuarios = helper.leArq()
-
-    for (const user of usuarios) {
-        if ( user.nomeDeUsuario === req.body.nomeDeUsuario) {
-            user.senha = req.body.senha
-        }
-    }
-
-    if (helper.escreveArq(usuarios) === 0){
-        return res.send("ok")
-    }
-    res.send("erro")
 }
 
 async function adicionaCategoria(req,res){
@@ -94,7 +80,6 @@ async function adicionaCategoria(req,res){
 module.exports = {
     criaUsuario,
     fazLogin,
-    mudaSenha,
     adicionaCategoria,
 };
 

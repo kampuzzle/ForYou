@@ -17,7 +17,6 @@ router.get('/home', (req, res) => {
 
 router.post('/cadastro',userController.criaUsuario)
 router.post('/login',userController.fazLogin)
-router.put('/mudaSenha',userController.mudaSenha)
 router.post('/adicionaCategoria', userController.adicionaCategoria)
 
 router.post('/novaMovimentacao', gastoController.adicionaGasto)

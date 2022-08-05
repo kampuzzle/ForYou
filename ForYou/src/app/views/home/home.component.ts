@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,9 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   month: string = 'Janeiro';
+  user: any = '';
   monthList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+  extratos = [];
 
   despesas = [{
     nome: 'Alimentação', icon: 'restaurant'},{
@@ -31,10 +34,17 @@ export class HomeComponent implements OnInit {
 
 
   constructor(
-    private router: Router
+    private router: Router,
+    private crudService: CrudService
   ) { }
 
   ngOnInit(): void {
+    this.crudService.getAll('/extrato').subscribe(extratos => {
+      this.extratos = extratos;
+    });
+    this.crudService.getAll('/getUser').subscribe(user => {
+      this.user = user;
+    });
   }
 
   decrement() {
@@ -51,5 +61,11 @@ export class HomeComponent implements OnInit {
 
   income() {
     this.router.navigate(['/new-income']);
+  }
+
+  extratoCategoria(categoria: string, tipo: string) {
+    this.crudService.getAll('/getMovimentacao/' + this.user + '/' + tipo + '/' + this.month + '/' + categoria).subscribe(extratos => {
+      this.extratos = extratos;
+    })
   }
 }

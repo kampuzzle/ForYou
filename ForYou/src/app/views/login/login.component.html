@@ -4,16 +4,16 @@
     <div class="box">
         <div class="logo"></div>
         <form #f="ngForm">
-            
+
             <p class="label">USUÁRIO</p>
             <input class="input" type="text" [(ngModel)]="user.username" placeholder="Exemplo" name="user" #username="ngModel" required>
-            
-            
+
+
             <p class="label">SENHA</p>
             <input class="input" type="password" [(ngModel)]="user.password" placeholder="Senha" name="pass" #pass="ngModel" required>
-            
+            <div class="register" (click)="register()">CRIAR CONTA</div>
             <br><button (click)="login(user.username, user.password)" class="btn" [disabled]="!f.valid">Login</button>
-       
+
             <div class="error-message">
                 <div *ngIf="(!username.valid && username.touched) || (!pass.valid && pass.touched)">
                     Informe um usuário e senha
@@ -23,6 +23,6 @@
 
         </form>
 
-        
-    </div>    
+
+    </div>
 </div>

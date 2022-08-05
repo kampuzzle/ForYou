@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { IncomeDebtService } from 'src/app/services/income-debt.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class NewComponent implements OnInit {
 
   @Input() categorys: any = [];
   @Input() title: string = '';
+  @Input() Url: string = '';
 
   new: any = {
     value: '',
@@ -18,14 +19,15 @@ export class NewComponent implements OnInit {
     date: ''
   }
 
+
   constructor( private incomeDebtService: IncomeDebtService ) { }
 
   ngOnInit(): void {
-  
+
   }
 
   create() {
-    this.incomeDebtService.create(this.new).subscribe(incomeDebt => {
+    this.incomeDebtService.create(this.new, this.Url).subscribe(incomeDebt => {
       this.new = incomeDebt;
       console.log(incomeDebt);
     }), (err: any) => {

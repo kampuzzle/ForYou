@@ -12,40 +12,40 @@
 .box {
     background: rgb(244, 190, 186);
     border-radius: 10px;
-    width: 408px;
-    height: 926px;  
+    width: 21vw;
+    height: 85vh;
 }
 
 #center {
-    width: 830px;
-    margin-left: 64px;
+    width: 43vw;
+    margin-left: 3.3vw;
 }
 
 #box2 {
-    margin-left: 64px;
+    margin-left: 3.3vw;
 }
 
 p {
     font: normal 700 36px/42px Roboto;
     color: #085273;
     text-align: center;
-    margin-top: 28px;
+    margin-top: 2.6vh;
 }
 
 #foward {
     transform: scale(1.7);
     color: #085273;
     position: absolute;
-    top: 115px;
-    margin-left: 280px;
+    top: 10.6vh;
+    margin-left: 14.5vw;
 }
 
 #back {
     transform: scale(1.7);
     color: #085273;
     position: absolute;
-    top: 115px;
-    margin-left: 530px;
+    top: 10.6vh;
+    margin-left: 27.6vw;
 }
 
 .material-icons:hover {
@@ -56,21 +56,30 @@ p {
 #receita {
     color: #13BB6A;
     transform: scale(6);
-    margin-left: 326px;
-    margin-top: 650px;
+    margin-left: 17vw;
+    margin-top: 60vh;
+}
+
+#receita:hover {
+  color: rgb(30, 106, 26);
 }
 
 #despesa {
     color: #E73434;
     transform: scale(6);
-    margin-left: 234px;
-    margin-top: 650px;
+    margin-left: 12vw;
+    margin-top: 60vh;
+
+  }
+
+#despesa:hover {
+    color: rgb(125, 41, 35);
 }
 
 // MAT TAB
 mat-tab-group {
-   font: normal 300 24px/28px Roboto;  
-   min-width: 0; 
+   font: normal 300 24px/28px Roboto;
+   min-width: 0;
    justify-content: flex-end;
    transform: none;
    transition: none;
@@ -81,19 +90,20 @@ mat-tab-group {
 }
 
 .content {
-    font: normal 300 20px/28px Roboto;  
-    margin-top: 30px;
+    font: normal 300 20px/28px Roboto;
+    margin-top: 2.7vh;
     text-align: center;
+    cursor: pointer;
 }
-  
+
 ::ng-deep .mat-tab-list .mat-tab-label {
     color: #085273;
-    margin-top: 10px;
+    margin-top: 0.9vh;
     font: normal 500 24px/19px Roboto;
 }
 
 #icons {
     vertical-align: text-top;
-    margin-right: 10px;
+    margin-right: 0.5vw;
     color: #5c152a;
 }

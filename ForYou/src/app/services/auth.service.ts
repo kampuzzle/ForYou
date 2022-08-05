@@ -16,7 +16,7 @@ export class AuthService implements CanActivate{
   tokenName: string = 'ForYouToken';
   currentUser: User | undefined;
 
-  constructor( 
+  constructor(
     public jwtHelper: JwtHelperService,
     private router: Router,
     private backendService: BackendService) {
@@ -32,7 +32,7 @@ export class AuthService implements CanActivate{
   }
 
   public login(username: string, password: string): Observable<User> {
-    return this.backendService.post(this.serviceUrl, { "username": username, "password": password }).pipe(map((res: any) => {
+    return this.backendService.post('/login', { "username": username, "password": password }).pipe(map((res: any) => {
       localStorage.setItem(this.tokenName, res.token);
 
       var decoded = this.jwtHelper.decodeToken(res.token);

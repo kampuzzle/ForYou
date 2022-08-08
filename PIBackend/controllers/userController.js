@@ -8,9 +8,9 @@ async function criaUsuario(req, res) {
     usuarios.push(cliente)
 
     if (helper.escreveArq(usuarios) === 0){
-        return res.send("ok")
+        return res.send({'message': 'ok'})
     }
-    res.send("erro")
+    res.send({'message': 'erro'})
 
 }
 
@@ -21,12 +21,12 @@ async function fazLogin(req,res) {
         if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
 
             if (user.senha === req.body.senha){
-                return res.send("Ok")
+                return res.send({'message': 'ok'})
                 
             }
         }
     }
-    res.send("Erro - senha incorreta")
+    res.send({'message': 'erro'})
 
 }
 
@@ -71,9 +71,9 @@ async function adicionaCategoria(req,res){
     }
 
     if (helper.escreveArq(usuarios) === 0){
-        return res.send("ok")
+        return res.send({'message': 'ok'})
     }
-    res.send("erro")
+    res.send({'message': 'erro'})
 
 }
 

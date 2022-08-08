@@ -15,7 +15,6 @@ async function adicionaGasto(req,res){
     const newGasto = new Gasto(req.body.descricao,req.body.data,req.body.valor,req.body.categoria)
     //ADICIONAR OU REMOVER O SALDO
 
-
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
 
@@ -49,7 +48,7 @@ async function adicionaGasto(req,res){
     if (helper.escreveArq(usuarios) === 0){
         return res.send({'message': 'ok'});
     }
-    res.send("erro")
+    res.send({'message':'erro'})
 }
 
 async function atualizaGasto(req, res){
@@ -69,10 +68,10 @@ async function atualizaGasto(req, res){
                             gasto.categoria = req.body.categoria
                         }
                         if (req.body.data != null){
-                            let dataCompleta = new Date(req.body.data * 1000);
-                            gasto.ano = dataCompleta.getFullYear();
-                            gasto.mes = dataCompleta.getMonth() + 1;
-                            gasto.dia = dataCompleta.getDate();
+                            //TESTAR TESTAR TESTAR
+                            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            gasto.setDate(req.body.data);
+                            
                         }
                         if (req.body.valor != null){
                             user.saldoAtual += req.body.valor;
@@ -105,9 +104,9 @@ async function atualizaGasto(req, res){
     }
 
     if (helper.escreveArq(usuarios) === 0){
-        return res.send("ok")
+        return res.send({'message': 'ok'})
     }
-    res.send("erro")
+    res.send({'message': 'erro'})
 
 }
 
@@ -123,7 +122,7 @@ async function deleteGasto(req, res){
                     if ( req.body.id === gasto.id){
                         (user.listaReceitas).splice(id,1);
                         helper.escreveArq(usuarios);
-                        return res.send("ok")
+                        return res.send({'message': 'ok'})
                         //return res.status(200);
                         break;
                     }
@@ -136,7 +135,7 @@ async function deleteGasto(req, res){
                     if ( req.body.id === gasto.id){
                         user.listaDespesas.splice(id,1);
                         helper.escreveArq(usuarios);
-                        return res.send("ok")
+                        return res.send({'message': 'ok'})
                         //return res.status(200);
                         break;
                     }

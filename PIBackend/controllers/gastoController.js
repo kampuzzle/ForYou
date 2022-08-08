@@ -15,7 +15,6 @@ async function adicionaGasto(req,res){
     const newGasto = new Gasto(req.body.descricao,req.body.data,req.body.valor,req.body.categoria)
     //ADICIONAR OU REMOVER O SALDO
 
-    //console.log(newGasto.ano, newGasto.mes, newGasto.dia)
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
@@ -48,7 +47,7 @@ async function adicionaGasto(req,res){
     }
     console.log(newGasto)
     if (helper.escreveArq(usuarios) === 0){
-        return res.send("ok")
+        return res.send({'message': 'ok'});
     }
     res.send("erro")
 }

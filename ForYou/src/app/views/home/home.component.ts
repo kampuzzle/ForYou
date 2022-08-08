@@ -39,12 +39,15 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.crudService.getAll('/extrato').subscribe(extratos => {
+    this.crudService.getAll('/getMovimentacoes/Amanda/receita/janeiro').subscribe(extratos => {
       this.extratos = extratos;
+      console.log("dajksdkasd")
+      console.log(extratos)
     });
-    this.crudService.getAll('/getUser').subscribe(user => {
-      this.user = user;
-    });
+    // this.crudService.getAll('/getUser').subscribe(user => {
+    //   this.user = user;
+    // });
+    this.user = 'Amanda';
   }
 
   decrement() {

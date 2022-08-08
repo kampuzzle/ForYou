@@ -17,20 +17,22 @@ export class CrudService {
   public create(item: any, Url:any): Observable<any> {
     console.log(item);
     return this.backendService.post(Url, item).pipe(
-      map((res: any) => new this.class(res.resp)),
+      map((res: any) => {
+        return res
+      },
       catchError((err) => {
         throw err;
       })
-    )
+    ))
   }
 
   public update(item: any, Url: any): Observable<any> {
     return this.backendService.put(Url, item).pipe(
-      map((res: any) => new this.class(res.resp)),
+      map((res: any) => alert("Criado com sucesso"),
       catchError((err) => {
         throw err;
       })
-    )
+    ))
   }
 
   public delete(item: any, Url: any): Observable<any> {

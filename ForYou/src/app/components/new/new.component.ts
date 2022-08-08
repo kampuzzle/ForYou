@@ -13,6 +13,7 @@ export class NewComponent implements OnInit {
   @Input() tipo: string = '';
 
   new: any = {
+    nomeDeUsuario: '',
     valor: '',
     descricao: '',
     categoria: '',
@@ -24,7 +25,9 @@ export class NewComponent implements OnInit {
   constructor( private incomeDebtService: IncomeDebtService ) { }
 
   ngOnInit(): void {
+    localStorage.setItem('username', 'Amanda');
     this.new.tipo = this.tipo;
+    this.new.nomeDeUsuario = localStorage.getItem('username');
   }
 
   create() {

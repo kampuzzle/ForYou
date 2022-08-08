@@ -12,7 +12,7 @@ async function adicionaGasto(req,res){
     var usuarios = helper.leArq()
     let id = 0
 
-    const newGasto = new Gasto(req.body.descricao,req.body.data * 1000,req.body.valor,req.body.categoria)
+    const newGasto = new Gasto(req.body.descricao,req.body.data,req.body.valor,req.body.categoria)
     //ADICIONAR OU REMOVER O SALDO
 
     //console.log(newGasto.ano, newGasto.mes, newGasto.dia)

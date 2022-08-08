@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class BackendService {
 
-  private API = 'http://localhost:8080/'; //MOCK
+  private API = 'http://localhost:8080'; //MOCK
 
   constructor( private http: HttpClient ) { }
 

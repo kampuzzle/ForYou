@@ -9,25 +9,25 @@
 
     <form #f="ngForm">
         <p class="label">VALOR</p>
-        <input class="input" [(ngModel)]="new.value" name="value" placeholder="R$ 0,00" currencyMask [options]="{ align: 'left', prefix: 'R$ ', thousands: '.', decimal: ','}" required>
-        
+        <input class="input" [(ngModel)]="new.valor" name="value" placeholder="R$ 0,00" currencyMask [options]="{ align: 'left', prefix: 'R$ ', thousands: '.', decimal: ','}" required>
+
         <p class="label">DESCRIÇÃO</p>
-        <input class="input" [(ngModel)]="new.description" name="desc" placeholder="Exemplo" required>
-    
+        <input class="input" [(ngModel)]="new.descricao" name="desc" placeholder="Exemplo" required>
+
         <p class="label">CATEGORIA</p>
-        <select class="input" list="category" [(ngModel)]="new.category" name="category" placeholder="Selecione uma categoria" required>
+        <select class="input" list="category" [(ngModel)]="new.categoria" name="category" placeholder="Selecione uma categoria" required>
             <option value="" disabled selected>Selecione uma categoria</option>
             <option *ngFor="let category of categorys" [value]="category">{{category}}</option>
-        </select>   
+        </select>
             <!-- <datalist id="category"> -->
         <!-- </datalist> -->
-    
+
         <p class="label">DATA</p>
-        <input class="input" type="date" [(ngModel)]="new.date" name="date" required>
-    
+        <input class="input" type="date" [(ngModel)]="new.data" name="date" required>
+
         <button (click)="create()" *ngIf="title == 'NOVA DESPESA'" class="button" [disabled]="!f.valid">CRIAR</button>
         <button (click)="create()" *ngIf="title == 'NOVA RECEITA'" class="button" id="income" [disabled]="!f.valid">CRIAR</button>
-    
+
     </form>
-    
+
 </div>

@@ -10,24 +10,25 @@ export class NewComponent implements OnInit {
 
   @Input() categorys: any = [];
   @Input() title: string = '';
-  @Input() Url: string = '';
+  @Input() tipo: string = '';
 
   new: any = {
-    value: '',
-    description: '',
-    category: '',
-    date: ''
+    valor: '',
+    descricao: '',
+    categoria: '',
+    data: '',
+    tipo: ''
   }
 
 
   constructor( private incomeDebtService: IncomeDebtService ) { }
 
   ngOnInit(): void {
-
+    this.new.tipo = this.tipo;
   }
 
   create() {
-    this.incomeDebtService.create(this.new, this.Url).subscribe(incomeDebt => {
+    this.incomeDebtService.create(this.new, '/novaMovimentacao').subscribe(incomeDebt => {
       this.new = incomeDebt;
       console.log(incomeDebt);
     }), (err: any) => {

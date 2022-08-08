@@ -17,7 +17,7 @@ export class AuthService implements CanActivate{
   currentUser: User | undefined;
 
   constructor(
-    public jwtHelper: JwtHelperService,
+    // public jwtHelper: JwtHelperService,
     private router: Router,
     private backendService: BackendService) {
     var token = localStorage.getItem(this.tokenName);
@@ -35,7 +35,7 @@ export class AuthService implements CanActivate{
     return this.backendService.post('/login', { "username": username, "password": password }).pipe(map((res: any) => {
       localStorage.setItem(this.tokenName, res.token);
 
-      var decoded = this.jwtHelper.decodeToken(res.token);
+      var decoded = '';//this.jwtHelper.decodeToken(res.token);
       this.currentUser = new User(decoded);
       return this.currentUser;
     }))
@@ -51,14 +51,14 @@ export class AuthService implements CanActivate{
     let token = localStorage.getItem(this.tokenName);
 
     if(token) {
-      var decoded = this.jwtHelper.decodeToken(token);
+      var decoded = '';//this.jwtHelper.decodeToken(token);
       this.currentUser =  new User(decoded);
     }
   }
 
   public isAuthenticated(): boolean {
     this.loadUser();
-    return !this.jwtHelper.isTokenExpired(this.getCurrentToken());
+    return true;//!this.jwtHelper.isTokenExpired(this.getCurrentToken());
   }
 
   public getCurrentToken(): any {
@@ -66,7 +66,7 @@ export class AuthService implements CanActivate{
   }
 
   public getCurrentUser(): any {
-    var decoded = this.jwtHelper.decodeToken(this.getCurrentToken());
+    var decoded = '';//this.jwtHelper.decodeToken(this.getCurrentToken());
     return decoded;
   }
 }

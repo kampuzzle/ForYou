@@ -12,10 +12,10 @@
     <input class="input" formControlName="email" required>
 
     <div class="label">SENHA</div>
-    <input class="input" formControlName="password" required>
+    <input class="input" type="password" formControlName="password" required>
 
     <div class="label">CONFIRMAR SENHA</div>
-    <input class="input" formControlName="confirmPassword" required>
+    <input class="input" type="password" formControlName="confirmPassword" required>
 
     <button class="button" [disabled]="!form.valid" (click)="register()">CRIAR</button>
 

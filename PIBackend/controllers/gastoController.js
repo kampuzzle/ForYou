@@ -177,6 +177,8 @@ async function getGastos(req,res){
             console.log("acha o usuario")
            
                 for (const receita of user.listaReceitas){
+                    console.log(user.listaReceitas, receita)
+                    console.log(receita.mes, mes)
                     if (receita.mes === mes){
                         receita.tipo = "receita"
                         listaMovimentacoes.push(receita)
@@ -184,6 +186,28 @@ async function getGastos(req,res){
 
                 }
                 console.log(JSON.stringify(listaMovimentacoes))
+
+                for (const gasto of user.listaDespesas){
+                    if (gasto.mes === mes){
+                        gasto.tipo = "despesa"
+                        listaMovimentacoes.push(gasto)
+                    }
+                }
+                console.log(JSON.stringify(listaMovimentacoes))
+                return res.json(listaMovimentacoes)
+            
+        }
+    }
+}
+
+
+async function getDespesas(req,res){
+    var usuarios = helper.leArq();
+    var mes = req.params['Mes']
+    var listaMovimentacoes = []
+
+    for (const user of usuarios) {
+        if( user.nomeDeUsuario === req.params['User']) {
 
                 for (const gasto of user.listaDespesas){
                     if (gasto.mes === mes){
@@ -207,11 +231,12 @@ async function getGastosPorCategoria(req,res){
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
-
-            if (req.params['Tipo'] === "Receita"){
-
+            console.log("usuario ok")
+            if (req.params['Tipo'] === "receita"){
+                console.log("receita ok")
                 for (const receita of user.listaReceitas){
-                    if (receita.mes == mes){
+                    if (receita.mes === mes){
+                        console.log(receita.categoria, categoria)
                         if (receita.categoria === categoria){
                             listaMovimentacoesCateg.push(receita)
                         }
@@ -221,11 +246,11 @@ async function getGastosPorCategoria(req,res){
                 return res.json(listaMovimentacoesCateg)
 
             }
-            else if (req.params['Tipo'] === "Despesa") {
+            else if (req.params['Tipo'] === "despesa") {
                
                 for (const gasto of user.listaDespesas){
-                    if (gasto.mes == mes){
-                        if (receita.categoria === categoria){
+                    if (gasto.mes === mes){
+                        if (gasto.categoria === categoria){
                             listaMovimentacoesCateg.push(gasto)
                         }
                     }
@@ -275,4 +300,5 @@ module.exports = {
     getGastos,
     getGastosPorCategoria,
     getSaldos,
+    getDespesas,
 };

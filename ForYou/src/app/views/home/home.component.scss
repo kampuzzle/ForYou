@@ -26,7 +26,7 @@
 }
 
 p {
-    font: normal 700 36px/42px Roboto;
+    font: normal 700 30px/36px Roboto;
     color: #085273;
     text-align: center;
     margin-top: 2.6vh;
@@ -77,7 +77,7 @@ p {
 
 // MAT TAB
 mat-tab-group {
-   font: normal 300 24px/28px Roboto;
+   font: normal 300 20px/24px Roboto;
    min-width: 0;
    justify-content: flex-end;
    transform: none;
@@ -89,10 +89,11 @@ mat-tab-group {
 }
 
 .content {
-    font: normal 300 20px/28px Roboto;
+    font: normal 300 16px/20px Roboto;
     margin-top: 2.7vh;
     text-align: center;
     cursor: pointer;
+
 }
 
 ::ng-deep .mat-tab-list .mat-tab-label {
@@ -111,15 +112,21 @@ mat-tab-group {
     vertical-align: text-top;
     margin-right: 0.5vw;
     color: #d11919;
+    transform: scale(0.7);
 }
 
 #extrato-receita {
     vertical-align: text-top;
     margin-right: 0.5vw;
     color: rgb(17, 144, 17);
+    transform: scale(0.7);
 }
 
 #graph {
   margin-left: 5vw;
   margin-top: 2vh;
+}
+
+#extrato-list {
+    max-height: 10h;
 }

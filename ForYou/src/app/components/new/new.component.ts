@@ -21,17 +21,14 @@ export class NewComponent implements OnInit {
     tipo: ''
   }
 
-
   constructor( private incomeDebtService: IncomeDebtService ) { }
 
   ngOnInit(): void {
-    localStorage.setItem('username', 'Amanda');
     this.new.tipo = this.tipo;
     this.new.nomeDeUsuario = localStorage.getItem('username');
   }
 
   create() {
-    localStorage.setItem('username', 'Amanda');
     this.new.tipo = this.tipo;
     this.new.nomeDeUsuario = localStorage.getItem('username');
     this.incomeDebtService.create(this.new, '/novaMovimentacao').subscribe(incomeDebt => {

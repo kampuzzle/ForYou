@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { map, Observable } from 'rxjs';
+import { map, Observable, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { BackendService } from './backend.service';
 
@@ -33,11 +33,18 @@ export class AuthService implements CanActivate{
 
   public login(username: string, password: string): Observable<User> {
     return this.backendService.post('/login', { "username": username, "password": password }).pipe(map((res: any) => {
-      localStorage.setItem(this.tokenName, res.token);
-
-      var decoded = '';//this.jwtHelper.decodeToken(res.token);
-      this.currentUser = new User(decoded);
-      return this.currentUser;
+      if(res.message == 'ok'){
+        localStorage.setItem(this.tokenName, res.token);
+  
+        var decoded = '';//this.jwtHelper.decodeToken(res.token);
+        this.currentUser = new User(decoded);
+        return this.currentUser;
+      }else {
+        alert(res.message);
+        var decoded = '';//this.jwtHelper.decodeToken(res.token);
+        this.currentUser = new User(decoded);
+        throw 'Erro';
+      }
     }))
   }
 

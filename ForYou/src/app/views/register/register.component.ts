@@ -26,11 +26,13 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     this.crudService.create(this.form.value, '/cadastro').subscribe(register => {
-      console.log(register);
-      this.router.navigate(['/login']);
-    }), (err: any) => {
-      this.router.navigate(['/login']);
-    }
+      if(register.message == 'ok'){
+        this.router.navigate(['/login']);
+        return
+      }else {
+        alert(register.message);
+      }  
+    })
   }
 
 

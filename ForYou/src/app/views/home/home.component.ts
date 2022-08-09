@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/services/crud.service';
-// import * as echarts from 'echarts';
+import * as echarts from 'echarts';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import { CrudService } from 'src/app/services/crud.service';
 })
 export class HomeComponent implements OnInit {
 
-  month: string = 'Janeiro';
+  month: string = 'Agosto';
   user: any = '';
   monthList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
   extratos: any = [];
@@ -22,15 +22,14 @@ export class HomeComponent implements OnInit {
     nome: 'Transporte', icon: 'directions_car'},{
     nome: 'Educação', icon: 'school'},{
     nome: 'Moradia', icon: 'home'},{
-    nome: 'Outros', icon: 'local_atm'},{
-    nome: 'Adicionar categoria', icon: 'add'}
+    nome: 'Outros', icon: 'local_atm'}
   ];
   receitas = [{
     nome: 'Salário', icon: 'payments'},{
     nome: 'Rendimentos', icon: 'savings'},{
-    nome: 'Mesada', icon: 'attach_money'},{
-    nome: 'Adicionar categoria', icon: 'add'}
+    nome: 'Mesada', icon: 'attach_money'}
   ];
+  monthIndex: any = '';
 
   constructor(
     private router: Router,
@@ -38,16 +37,24 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.crudService.getAll('/getMovimentacoes/Amanda/receita/08').subscribe(extratos => {
+    this.user = localStorage.getItem('username');
+    let index = 0;
+    for (let month of this.monthList) {
+      index++;
+      if (month === this.month){
+        this.monthIndex = index;
+      }
+    }
+    let monthString = '';
+    if(this.monthIndex < 10){
+      monthString = '0'+this.monthIndex;
+    }
+
+    this.crudService.getAll('/getMovimentacoes/' + this.user + '/receita/' + monthString).subscribe(extratos => {
       this.extratos = extratos;
-      console.log("dajksdkasd")
-      console.log(extratos)
     });
     this.graph();
-    // this.crudService.getAll('/getUser').subscribe(user => {
-    //   this.user = user;
-    // });
-    this.user = 'Amanda';
+
   }
 
   decrement() {
@@ -67,31 +74,32 @@ export class HomeComponent implements OnInit {
   }
 
   extratoCategoria(categoria: string, tipo: string) {
-    this.crudService.getAll('/getMovimentacao/' + this.user + '/' + tipo + '/08/' + categoria).subscribe(extratos => {
+
+    this.crudService.getAll('/getMovCateg/' + this.user + '/' + tipo + '/08/' + categoria).subscribe(extratos => {
       this.extratos = extratos;
     })
   }
 
   graph() {
-    // var chart = echarts.init(document.getElementById('graph')!);
-    console.log(this.despesas[0], this.despesas[1])
-    // chart.setOption({
-    //   title: {},
-    //   tooltip: {},
-    //   series: [{
-    //     type: 'pie',
-    //     data: [
-    //       {
-    //         value: 10,
-    //         name: this.despesas[0].nome
-    //       },
-    //       {
-    //         value: 10,
-    //         name: this.despesas[1].nome
-    //       }
-    //     ],
-    //     radius: ['40%', '70%']
-    //   }]
-    // })
+    var chart = echarts.init(document.getElementById('graph')!);
+
+    chart.setOption({
+      title: {},
+      tooltip: {},
+      series: [{
+        type: 'pie',
+        data: [
+          {
+            value: 10,
+            name: this.despesas[0].nome
+          },
+          {
+            value: 10,
+            name: this.despesas[1].nome
+          }
+        ],
+        radius: ['40%', '70%']
+      }]
+    })
   }
 }

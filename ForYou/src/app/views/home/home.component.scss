@@ -57,7 +57,7 @@ p {
     color: #13BB6A;
     transform: scale(6);
     margin-left: 17vw;
-    margin-top: 60vh;
+    margin-top: 12vh;
 }
 
 #receita:hover {
@@ -68,9 +68,8 @@ p {
     color: #E73434;
     transform: scale(6);
     margin-left: 12vw;
-    margin-top: 60vh;
-
-  }
+    margin-top: 12vh;
+}
 
 #despesa:hover {
     color: rgb(125, 41, 35);
@@ -106,4 +105,9 @@ mat-tab-group {
     vertical-align: text-top;
     margin-right: 0.5vw;
     color: #5c152a;
+}
+
+#graph {
+  margin-left: 5vw;
+  margin-top: 2vh;
 }

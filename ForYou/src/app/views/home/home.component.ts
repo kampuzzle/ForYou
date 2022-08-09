@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/services/crud.service';
+import * as echarts from 'echarts';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +31,6 @@ export class HomeComponent implements OnInit {
     nome: 'Mesada', icon: 'attach_money'},{
     nome: 'Adicionar categoria', icon: 'add'}
   ];
-    // 'Salário', 'Bolsa', 'Mesada', 'Adicionar categoria'];
-
 
   constructor(
     private router: Router,
@@ -44,6 +43,7 @@ export class HomeComponent implements OnInit {
       console.log("dajksdkasd")
       console.log(extratos)
     });
+    this.graph();
     // this.crudService.getAll('/getUser').subscribe(user => {
     //   this.user = user;
     // });
@@ -69,6 +69,29 @@ export class HomeComponent implements OnInit {
   extratoCategoria(categoria: string, tipo: string) {
     this.crudService.getAll('/getMovimentacao/' + this.user + '/' + tipo + '/' + this.month + '/' + categoria).subscribe(extratos => {
       this.extratos = extratos;
+    })
+  }
+
+  graph() {
+    var chart = echarts.init(document.getElementById('graph')!);
+
+    chart.setOption({
+      title: {},
+      tooltip: {},
+      series: [{
+        type: 'pie',
+        data: [
+          {
+            value: 10,
+            name: this.despesas[0]
+          },
+          {
+            value: 10,
+            name: this.despesas[1]
+          }
+        ],
+        radius: ['40%', '70%']
+      }]
     })
   }
 }

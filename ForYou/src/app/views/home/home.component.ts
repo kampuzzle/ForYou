@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
 
   graph() {
     var chart = echarts.init(document.getElementById('graph')!);
-
+    console.log(this.despesas[0], this.despesas[1])
     chart.setOption({
       title: {},
       tooltip: {},
@@ -83,11 +83,11 @@ export class HomeComponent implements OnInit {
         data: [
           {
             value: 10,
-            name: this.despesas[0]
+            name: this.despesas[0].nome
           },
           {
             value: 10,
-            name: this.despesas[1]
+            name: this.despesas[1].nome
           }
         ],
         radius: ['40%', '70%']

@@ -17,9 +17,9 @@ async function adicionaGasto(req,res){
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
-
-            if (req.body.tipo === "Receita"){
-
+            console.log(req.body.nomeDeUsuario)
+            if (req.body.tipo === "receita"){
+                console.log(req.body.tipo)
                 user.saldoAtual += (req.body).valor;
 
                 //a id é um a mais do q a ultima id
@@ -32,7 +32,7 @@ async function adicionaGasto(req,res){
                 newGasto.setId(id);
                 
             }
-            else if (req.body.tipo === "Despesa") {
+            else if (req.body.tipo === "despesa") {
                 user.saldoAtual -= (req.body).valor;
 
                 if ( (user.listaDespesas).length > 0){
@@ -52,61 +52,61 @@ async function adicionaGasto(req,res){
 }
 
 async function atualizaGasto(req, res){
-    var usuarios = helper.leArq()
-    //ATUALIZAR O SALDO
+    // var usuarios = helper.leArq()
+    // //ATUALIZAR O SALDO
 
-    for (const user of usuarios) {
-        if(user.nomeDeUsuario === req.body.nomeDeUsuario) {
-            if (req.body.tipo === "Receita"){
+    // for (const user of usuarios) {
+    //     if(user.nomeDeUsuario === req.body.nomeDeUsuario) {
+    //         if (req.body.tipo === "Receita"){
                 
-                for ( const gasto of user.listaReceitas){
-                    if ( req.body.id === gasto.id){
-                        if (req.body.descricao != null){
-                            gasto.descricao = req.body.descricao
-                        }
-                        if (req.body.categoria != null){
-                            gasto.categoria = req.body.categoria
-                        }
-                        if (req.body.data != null){
-                            //TESTAR TESTAR TESTAR
-                            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                            gasto.setDate(req.body.data);
+    //             for ( const gasto of user.listaReceitas){
+    //                 if ( req.body.id === gasto.id){
+    //                     if (req.body.descricao != null){
+    //                         gasto.descricao = req.body.descricao
+    //                     }
+    //                     if (req.body.categoria != null){
+    //                         gasto.categoria = req.body.categoria
+    //                     }
+    //                     if (req.body.data != null){
+    //                         //TESTAR TESTAR TESTAR
+    //                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //                         gasto.setDate(req.body.data);
                             
-                        }
-                        if (req.body.valor != null){
-                            user.saldoAtual += req.body.valor;
-                            gasto.valor = req.body.valor
-                        }
-                    }
-                }
-            }
+    //                     }
+    //                     if (req.body.valor != null){
+    //                         user.saldoAtual += req.body.valor;
+    //                         gasto.valor = req.body.valor
+    //                     }
+    //                 }
+    //             }
+    //         }
 
-            else if(req.body.tipo === "Despesa"){
-                for ( const gasto of user.listaDespesas){
-                    if ( req.body.id === gasto.id){
-                        if (req.body.descricao != null){
-                            gasto.descricao = req.body.descricao
-                        }
-                        if (req.body.categoria != null){
-                            gasto.categoria = req.body.categoria
-                        }
-                        if (req.body.data != null){
-                            gasto.data = req.body.data
-                        }
-                        if (req.body.valor != null){
-                            user.saldoAtual -= req.body.valor;
-                            gasto.valor = req.body.valor
-                        }
-                    }
-                }
-            }
-        }
-    }
+    //         else if(req.body.tipo === "Despesa"){
+    //             for ( const gasto of user.listaDespesas){
+    //                 if ( req.body.id === gasto.id){
+    //                     if (req.body.descricao != null){
+    //                         gasto.descricao = req.body.descricao
+    //                     }
+    //                     if (req.body.categoria != null){
+    //                         gasto.categoria = req.body.categoria
+    //                     }
+    //                     if (req.body.data != null){
+    //                         gasto.data = req.body.data
+    //                     }
+    //                     if (req.body.valor != null){
+    //                         user.saldoAtual -= req.body.valor;
+    //                         gasto.valor = req.body.valor
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
-    if (helper.escreveArq(usuarios) === 0){
-        return res.send({'message': 'ok'})
-    }
-    res.send({'message': 'erro'})
+    // if (helper.escreveArq(usuarios) === 0){
+    //     return res.send({'message': 'ok'})
+    // }
+    // res.send({'message': 'erro'})
 
 }
 
@@ -152,12 +152,12 @@ async function getCategorias(req, res){
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
 
-            if (req.params['Tipo'] === "Receita"){
+            if (req.params['Tipo'] === "receita"){
                 console.log(JSON.stringify(user.categoriasReceita))
                 return res.json(user.categoriasReceita)
                 
             }
-            else if (req.params['Tipo'] === "Despesa") {
+            else if (req.params['Tipo'] === "despesa") {
                 console.log(JSON.stringify(user.categoriasDespesa))
                 return res.json(user.categoriasDespesa)
             }
@@ -171,31 +171,29 @@ async function getGastos(req,res){
     var mes = req.params['Mes']
     var listaMovimentacoes = []
 
+    console.log("get Gastoss")
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
-
-            if (req.params['Tipo'] === "Receita"){
-
+            console.log("acha o usuario")
+           
                 for (const receita of user.listaReceitas){
-                    if (receita.mes == mes){
+                    if (receita.mes === mes){
+                        receita.tipo = "receita"
                         listaMovimentacoes.push(receita)
                     }
 
                 }
                 console.log(JSON.stringify(listaMovimentacoes))
-                return res.json(listaMovimentacoes)
 
-            }
-            else if (req.params['Tipo'] === "Despesa") {
-               
                 for (const gasto of user.listaDespesas){
-                    if (gasto.mes == mes){
+                    if (gasto.mes === mes){
+                        gasto.tipo = "despesa"
                         listaMovimentacoes.push(gasto)
                     }
                 }
                 console.log(JSON.stringify(listaMovimentacoes))
                 return res.json(listaMovimentacoes)
-            }
+            
         }
     }
 }

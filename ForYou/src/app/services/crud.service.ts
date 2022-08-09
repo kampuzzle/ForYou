@@ -47,8 +47,10 @@ export class CrudService {
   }
 
   public getAll(Url: any): Observable<any> {
+    console.log('jdjkajskd')
     return this.backendService.getAll(Url).pipe(
       map((res: any) => {
+        console.log('teste');
         return res;
       },
       catchError((err) => {

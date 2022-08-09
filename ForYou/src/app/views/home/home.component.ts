@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/services/crud.service';
-import * as echarts from 'echarts';
+// import * as echarts from 'echarts';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   month: string = 'Janeiro';
   user: any = '';
   monthList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-  extratos = [];
+  extratos: any = [];
 
   despesas = [{
     nome: 'Alimentação', icon: 'restaurant'},{
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.crudService.getAll('/getMovimentacoes/Amanda/receita/janeiro').subscribe(extratos => {
+    this.crudService.getAll('/getMovimentacoes/Amanda/receita/08').subscribe(extratos => {
       this.extratos = extratos;
       console.log("dajksdkasd")
       console.log(extratos)
@@ -67,31 +67,31 @@ export class HomeComponent implements OnInit {
   }
 
   extratoCategoria(categoria: string, tipo: string) {
-    this.crudService.getAll('/getMovimentacao/' + this.user + '/' + tipo + '/' + this.month + '/' + categoria).subscribe(extratos => {
+    this.crudService.getAll('/getMovimentacao/' + this.user + '/' + tipo + '/08/' + categoria).subscribe(extratos => {
       this.extratos = extratos;
     })
   }
 
   graph() {
-    var chart = echarts.init(document.getElementById('graph')!);
+    // var chart = echarts.init(document.getElementById('graph')!);
     console.log(this.despesas[0], this.despesas[1])
-    chart.setOption({
-      title: {},
-      tooltip: {},
-      series: [{
-        type: 'pie',
-        data: [
-          {
-            value: 10,
-            name: this.despesas[0].nome
-          },
-          {
-            value: 10,
-            name: this.despesas[1].nome
-          }
-        ],
-        radius: ['40%', '70%']
-      }]
-    })
+    // chart.setOption({
+    //   title: {},
+    //   tooltip: {},
+    //   series: [{
+    //     type: 'pie',
+    //     data: [
+    //       {
+    //         value: 10,
+    //         name: this.despesas[0].nome
+    //       },
+    //       {
+    //         value: 10,
+    //         name: this.despesas[1].nome
+    //       }
+    //     ],
+    //     radius: ['40%', '70%']
+    //   }]
+    // })
   }
 }

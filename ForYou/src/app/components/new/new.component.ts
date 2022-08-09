@@ -31,6 +31,9 @@ export class NewComponent implements OnInit {
   }
 
   create() {
+    localStorage.setItem('username', 'Amanda');
+    this.new.tipo = this.tipo;
+    this.new.nomeDeUsuario = localStorage.getItem('username');
     this.incomeDebtService.create(this.new, '/novaMovimentacao').subscribe(incomeDebt => {
       this.new = incomeDebt;
       console.log(incomeDebt);

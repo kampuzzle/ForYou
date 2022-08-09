@@ -55,8 +55,8 @@
 
       <p>EXTRATO</p>
       <div class="content" *ngFor="let extrato of extratos">
-        <span class="material-icons" id="icons">fiber_manual_record</span>
-        {{ extrato }}
+        <span class="material-icons" [id]="extrato.tipo == 'receita'? 'extrato' : 'extrato-receita' ">fiber_manual_record</span>
+        R$ {{extrato?.valor}} - {{ extrato?.dia }}/{{extrato?.mes}}<br> {{extrato?.descricao}}
       </div>
 
     </div>

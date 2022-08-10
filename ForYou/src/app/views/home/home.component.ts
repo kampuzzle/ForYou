@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
   }
 
   extratoCategoria(categoria: string, tipo: string) {
-
+    console.log('/getMovCateg/' + this.user + '/' + tipo + '/08/' + categoria)
     this.crudService.getAll('/getMovCateg/' + this.user + '/' + tipo + '/08/' + categoria).subscribe(extratos => {
       this.extratos = extratos;
     })
@@ -82,6 +82,9 @@ export class HomeComponent implements OnInit {
 
   graph() {
     var chart = echarts.init(document.getElementById('graph')!);
+
+    var data = this.crudService.getAll('/getDespesas' + this.user + '/receita');
+    console.log(data);
 
     chart.setOption({
       title: {},

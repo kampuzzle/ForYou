@@ -26,6 +26,6 @@ router.get('/getCategoria/:User/:Tipo',gastoController.getCategorias)
 router.get('/getMovimentacoes/:User/:Tipo/:Mes',gastoController.getGastos)
 router.get('/getMovCateg/:User/:Tipo/:Mes/:Categoria',gastoController.getGastosPorCategoria)
 router.get('/getSaldos/:User/:Mes',gastoController.getSaldos)
-router.get('/getGastos/:User/:Tipo/:Mes',gastoController.getDespesas)
+router.get('/getGastos/:User/:Mes',gastoController.getDespesas)
 
 module.exports = router

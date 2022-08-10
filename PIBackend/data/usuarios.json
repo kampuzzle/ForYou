@@ -1,1 +1,62 @@
-[{"nomeDeUsuario":"Amanda","email":"email@email","senha":"senha","categoriasReceita":["Salário","Rendimento","Extra","Jogo do bixo"],"categoriasDespesas":["Casa","Restaurante","Entretenimento","Roupas","Mercado","Viagem","Transporte"],"listaDespesas":[{"descricao":"roupas na shein","ano":2022,"mes":"08","dia":1,"valor":150,"categoria":"Roupas","id":1},{"descricao":"vestido na riachuelo","ano":2022,"mes":"08","dia":1,"valor":150,"categoria":"Roupas","id":2},{"descricao":"dgfhdg","ano":"2022","mes":"08","dia":"18","valor":3453.54,"categoria":"Lazer","id":3},{"descricao":"Almoço","ano":"2022","mes":"08","dia":"09","valor":30,"categoria":"Alimentação ","id":4},{"descricao":"almoço","ano":"2022","mes":"08","dia":"09","valor":30,"categoria":"Alimentação ","id":5}],"listaReceitas":[{"descricao":"salário agosto","ano":2022,"mes":"08","dia":1,"valor":3500,"categoria":"Salário","id":3},{"descricao":"achei dinheiro na rua","ano":"2022","mes":"10","dia":"20","valor":15,"categoria":"Extra","id":4},{"descricao":"bjjh","ano":"2022","mes":"08","dia":"02","valor":12.34,"categoria":"Bolsa","id":5},{"descricao":"egdfgd","ano":"2022","mes":"08","dia":"11","valor":43453.45,"categoria":"Bolsa","id":6},{"descricao":"56456","ano":"2022","mes":"08","dia":"16","valor":453.45,"categoria":"Mesada","id":7}],"saldoAtual":44285.69999999999},{"email":"paula@gmail.com","categoriasReceita":["Salário","Rendimento","Extra"],"categoriasDespesas":["Casa","Restaurante","Entretenimento","Roupas","Mercado","Viagem","Transporte"],"listaDespesas":[],"listaReceitas":[],"saldoAtual":0},{"email":"sgfsdfg","categoriasReceita":["Salário","Rendimento","Extra"],"categoriasDespesas":["Casa","Restaurante","Entretenimento","Roupas","Mercado","Viagem","Transporte"],"listaDespesas":[],"listaReceitas":[],"saldoAtual":0},{"email":"jhfgjh","categoriasReceita":["Salário","Rendimento","Extra"],"categoriasDespesas":["Casa","Restaurante","Entretenimento","Roupas","Mercado","Viagem","Transporte"],"listaDespesas":[],"listaReceitas":[],"saldoAtual":0},{"email":"paula","categoriasReceita":["Salário","Rendimento","Extra"],"categoriasDespesas":["Casa","Restaurante","Entretenimento","Roupas","Mercado","Viagem","Transporte"],"listaDespesas":[],"listaReceitas":[],"saldoAtual":0},{"nomeDeUsuario":"paula","email":"paula","senha":"paula","categoriasReceita":["Salário","Rendimento","Extra"],"categoriasDespesas":["Casa","Restaurante","Entretenimento","Roupas","Mercado","Viagem","Transporte"],"listaDespesas":[{"descricao":"asjdaksd","ano":"2022","mes":"08","dia":"09","valor":3746.23,"categoria":"Lazer","id":0}],"listaReceitas":[{"descricao":"salario agosto","ano":"2022","mes":"08","dia":"09","valor":3000,"categoria":"Salário","id":0}],"saldoAtual":-746.23},{"nomeDeUsuario":"paula","email":"paula","senha":"paula","categoriasReceita":["Salário","Rendimento","Extra"],"categoriasDespesas":["Casa","Restaurante","Entretenimento","Roupas","Mercado","Viagem","Transporte"],"listaDespesas":[{"descricao":"asjdaksd","ano":"2022","mes":"08","dia":"09","valor":3746.23,"categoria":"Lazer","id":0}],"listaReceitas":[{"descricao":"salario agosto","ano":"2022","mes":"08","dia":"09","valor":3000,"categoria":"Salário","id":0}],"saldoAtual":-746.23}]
+[
+    {
+        "nomeDeUsuario": "amanda",
+        "email": "amanda@amanda",
+        "senha": "1234",
+        "categoriasReceita": [
+            "Salário",
+            "Rendimento",
+            "Mesada"
+        ],
+        "categoriasDespesas": [
+            "Alimentação",
+            "Lazer",
+            "Saúde",
+            "Transporte",
+            "Educação",
+            "Moradia",
+            "Outros"
+        ],
+        "listaDespesas": [
+            {
+                "descricao": "mercado",
+                "ano": "2022",
+                "mes": "08",
+                "dia": "03",
+                "valor": 387.14,
+                "categoria": "Lazer",
+                "id": 0
+            },
+            {
+                "descricao": "comida",
+                "ano": "2022",
+                "mes": "08",
+                "dia": "06",
+                "valor": 30,
+                "categoria": "Alimentação",
+                "id": 1
+            },
+            {
+                "descricao": "festa",
+                "ano": "2022",
+                "mes": "08",
+                "dia": "03",
+                "valor": 250,
+                "categoria": "Lazer",
+                "id": 2
+            }
+        ],
+        "listaReceitas": [
+            {
+                "descricao": "sfsdf",
+                "ano": "2022",
+                "mes": "08",
+                "dia": "12",
+                "valor": 15.5,
+                "categoria": "Bolsa",
+                "id": 0
+            }
+        ],
+        "saldoAtual": -651.64
+    }
+]

@@ -204,19 +204,33 @@ async function getGastos(req,res){
 async function getDespesas(req,res){
     var usuarios = helper.leArq();
     var mes = req.params['Mes']
-    var listaMovimentacoes = []
+    var listaMovimentacoes = {}
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
 
-                for (const gasto of user.listaDespesas){
-                    if (gasto.mes === mes){
-                        gasto.tipo = "despesa"
-                        listaMovimentacoes.push(gasto)
+            for (const cat of user.categoriasDespesas){
+                somaCat = 0;
+
+                
+                for (const gasto of user.listaDespesas) {
+
+                    if (gasto.categoria === cat) {
+                  
+                        if( mes === gasto.mes){
+                            
+                            somaCat += gasto.valor;
+                        }
+                        
                     }
                 }
-                console.log(JSON.stringify(listaMovimentacoes))
-                return res.json(listaMovimentacoes)
+                //listaMovimentacoes[cat] = somaCat;
+                listaMovimentacoes.(user.categoriasDespesas) = somaCat
+            }
+
+            
+            console.log(JSON.stringify(listaMovimentacoes))
+            return res.json(listaMovimentacoes)
             
         }
     }
@@ -231,9 +245,9 @@ async function getGastosPorCategoria(req,res){
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
-            console.log("usuario ok")
+      
             if (req.params['Tipo'] === "receita"){
-                console.log("receita ok")
+         
                 for (const receita of user.listaReceitas){
                     if (receita.mes === mes){
                         console.log(receita.categoria, categoria)
@@ -250,7 +264,9 @@ async function getGastosPorCategoria(req,res){
                
                 for (const gasto of user.listaDespesas){
                     if (gasto.mes === mes){
-                        if (gasto.categoria === categoria){
+                        console.log(categoria, gasto.categoria, gasto)
+
+                        if (gasto.categoria.replaceAll(/\s/g,'') === categoria.replaceAll(/\s/g,'')){
                             listaMovimentacoesCateg.push(gasto)
                         }
                     }

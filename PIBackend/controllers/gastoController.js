@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Gasto = require('../models/Gasto');
+const DespesaGrafico = require('../models/DespesaGrafico')
 const helper = require('../helper/fileHandling');
 
 /*
@@ -171,21 +172,21 @@ async function getGastos(req,res){
     var mes = req.params['Mes']
     var listaMovimentacoes = []
 
-    console.log("get Gastoss")
+    //console.log("get Gastoss")
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
-            console.log("acha o usuario")
+            //console.log("acha o usuario")
            
                 for (const receita of user.listaReceitas){
-                    console.log(user.listaReceitas, receita)
-                    console.log(receita.mes, mes)
+                    //console.log(user.listaReceitas, receita)
+                    //console.log(receita.mes, mes)
                     if (receita.mes === mes){
                         receita.tipo = "receita"
                         listaMovimentacoes.push(receita)
                     }
 
                 }
-                console.log(JSON.stringify(listaMovimentacoes))
+                //console.log(JSON.stringify(listaMovimentacoes))
 
                 for (const gasto of user.listaDespesas){
                     if (gasto.mes === mes){
@@ -193,7 +194,7 @@ async function getGastos(req,res){
                         listaMovimentacoes.push(gasto)
                     }
                 }
-                console.log(JSON.stringify(listaMovimentacoes))
+                //console.log(JSON.stringify(listaMovimentacoes))
                 return res.json(listaMovimentacoes)
             
         }
@@ -204,8 +205,9 @@ async function getGastos(req,res){
 async function getDespesas(req,res){
     var usuarios = helper.leArq();
     var mes = req.params['Mes']
-    var listaMovimentacoes = {}
+    var listaMovimentacoes = []
 
+    console.log("entra na funcao")
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
 
@@ -216,19 +218,19 @@ async function getDespesas(req,res){
                 for (const gasto of user.listaDespesas) {
 
                     if (gasto.categoria === cat) {
-                  
+                        console.log(gasto.categoria,cat)
                         if( mes === gasto.mes){
-                            
+                            console.log(mes,gasto.mes)
                             somaCat += gasto.valor;
+                            const gastoFormat = new DespesaGrafico(cat, somaCat)
+                            listaMovimentacoes.push(gastoFormat)
                         }
                         
                     }
+
                 }
-                //listaMovimentacoes[cat] = somaCat;
-                //listaMovimentacoes.(user.categoriasDespesas) = somaCat
             }
 
-            
             console.log(JSON.stringify(listaMovimentacoes))
             return res.json(listaMovimentacoes)
             
@@ -287,19 +289,24 @@ async function getSaldos(req,res){
 
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
-            saldoAtual = user.saldoAtual;
-
-            for (const receita of user.listaReceitas){
-                if (receita.mes != mes){
-                    saldoIni += receita.valor;
+            //saldo atual
+            for (const despesa of user.listaDespesas){
+                if (despesa.mes <= mes){
+                    saldoAtual -= despesa.valor;
                 }
             }
+            for (const rec of user.listaReceitas){
+                if (rec.mes <= mes) {
+                    saldoAtual += rec.valor;
+                }
+            }          
+
             for (const despesa of user.listaDespesas){
                 if (despesa.mes != mes){
-                    saldoIni -= despesa.valor;
                 }
                 else{
                     gastoAtual += despesa.valor;
+                    gastoAtual = Math.round((gastoAtual + Number.EPSILON) * 100) / 100
                 }
             }
         }

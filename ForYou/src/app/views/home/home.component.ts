@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CrudService } from 'src/app/services/crud.service';
 import * as echarts from 'echarts';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -30,6 +31,8 @@ export class HomeComponent implements OnInit {
     nome: 'Mesada', icon: 'attach_money'}
   ];
   monthIndex: any = '';
+  saldos: any;
+  data: any = [];
 
   constructor(
     private router: Router,
@@ -52,9 +55,12 @@ export class HomeComponent implements OnInit {
 
     this.crudService.getAll('/getMovimentacoes/' + this.user + '/receita/' + monthString).subscribe(extratos => {
       this.extratos = extratos;
+      this.getExtrato(extratos);
     });
-    this.graph();
 
+    this.crudService.getAll('/getSaldos/' + this.user + '/' + monthString).subscribe(saldos => {
+      this.saldos = saldos;
+    })
   }
 
   decrement() {
@@ -73,9 +79,12 @@ export class HomeComponent implements OnInit {
 
     this.crudService.getAll('/getMovimentacoes/' + this.user + '/receita/' + monthString).subscribe(extratos => {
       this.extratos = extratos;
+      this.getExtrato(extratos);
     });
-    this.graph();
-
+    this.saldos = null;
+    this.crudService.getAll('/getSaldos/' + this.user + '/' + monthString).subscribe(saldos => {
+      this.saldos = saldos;
+    })
   }
 
   increment() {
@@ -95,8 +104,12 @@ export class HomeComponent implements OnInit {
 
     this.crudService.getAll('/getMovimentacoes/' + this.user + '/receita/' + monthString).subscribe(extratos => {
       this.extratos = extratos;
+      this.getExtrato(extratos);
     });
-    this.graph();
+    this.saldos = null;
+    this.crudService.getAll('/getSaldos/' + this.user + '/' + monthString).subscribe(saldos => {
+      this.saldos = saldos;
+    })
   }
 
   debt() {
@@ -112,29 +125,40 @@ export class HomeComponent implements OnInit {
     this.crudService.getAll('/getMovCateg/' + this.user + '/' + tipo + '/08/' + categoria).subscribe(extratos => {
       this.extratos = extratos;
     })
+
   }
 
-  graph() {
-    var chart = echarts.init(document.getElementById('graph')!);
+  getExtrato(extratos: any) {
+    let dictList = [];
+    for(let cat of this.despesas) {
+      let somaCat = 0;
+      for (let extrato of extratos) {
+        if (extrato.tipo === 'despesa') {
+          if(extrato.categoria.replace(/\s/g, "") === cat.nome){
+            somaCat+=extrato.valor;
+          }
+        }
+      }
+      let dict = {value: 0, name: ''}
+      if(somaCat != 0) {
+        dict.name = cat.nome;
+        dict.value = somaCat;
+        dictList.push(dict);
+      }
+    }
+    this.graph(dictList);
+  }
 
-    var data = this.crudService.getAll('/getDespesas' + this.user + '/receita');
-    console.log(data);
+  graph(dict: any) {
+    var chart = echarts.init(document.getElementById('graph')!);
+    console.log(dict);
 
     chart.setOption({
       title: {},
       tooltip: {},
       series: [{
         type: 'pie',
-        data: [
-          {
-            value: 10,
-            name: this.despesas[0].nome
-          },
-          {
-            value: 10,
-            name: this.despesas[1].nome
-          }
-        ],
+        data: dict,
         radius: ['40%', '70%']
       }]
     })

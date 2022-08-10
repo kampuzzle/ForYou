@@ -46,6 +46,12 @@
 
       <div id="graph" style="width: 600px;height:450px;"></div>
 
+      <div class="saldos">
+        <!-- R$ {{saldos?.saldoInicial}}<br> -->
+        <div class="saldos" id="vermelho">R$ {{saldos?.gastoMes}}</div>
+        R$ {{saldos?.saldoAtual}}
+      </div>
+
       <span class="material-icons" id="despesa" (click)="debt()">remove_circle</span>
       <span class="material-icons" id="receita" (click)="income()">add_circle</span>
 

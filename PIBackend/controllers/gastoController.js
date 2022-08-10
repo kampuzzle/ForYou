@@ -225,7 +225,7 @@ async function getDespesas(req,res){
                     }
                 }
                 //listaMovimentacoes[cat] = somaCat;
-                listaMovimentacoes.(user.categoriasDespesas) = somaCat
+                //listaMovimentacoes.(user.categoriasDespesas) = somaCat
             }
 
             

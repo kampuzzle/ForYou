@@ -59,10 +59,44 @@ export class HomeComponent implements OnInit {
 
   decrement() {
     this.month = this.monthList[this.monthList.indexOf(this.month) - 1];
+    let index = 0;
+    for (let month of this.monthList) {
+      index++;
+      if (month === this.month){
+        this.monthIndex = index;
+      }
+    }
+    let monthString = '';
+    if(this.monthIndex < 10){
+      monthString = '0'+this.monthIndex;
+    }
+
+    this.crudService.getAll('/getMovimentacoes/' + this.user + '/receita/' + monthString).subscribe(extratos => {
+      this.extratos = extratos;
+    });
+    this.graph();
+
   }
 
   increment() {
     this.month = this.monthList[this.monthList.indexOf(this.month) + 1];
+
+    let index = 0;
+    for (let month of this.monthList) {
+      index++;
+      if (month === this.month){
+        this.monthIndex = index;
+      }
+    }
+    let monthString = '';
+    if(this.monthIndex < 10){
+      monthString = '0'+this.monthIndex;
+    }
+
+    this.crudService.getAll('/getMovimentacoes/' + this.user + '/receita/' + monthString).subscribe(extratos => {
+      this.extratos = extratos;
+    });
+    this.graph();
   }
 
   debt() {

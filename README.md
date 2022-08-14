@@ -2,6 +2,8 @@
 
 > O produto proposto é um auxiliador de gestão financeira e controle de gastos. Com ele, é possível registrar receitas e gastos, os associando a uma categoria (salário, aluguel, viagem, etc), a uma data (podendo escolher datas retroativas), um valor e a uma descrição. Também é possível criar categorias novas para seus gastos e receitas. O produto então apresenta um balanço financeiro do mês escolhido, mostrando seu saldo inicial no mês, quanto foi gasto, quanto dinheiro você possui no momento e um gráfico de gastos indicando qual porcentagem foi gasta em cada categoria.
 
+![](https://github.com/kampuzzle/PI/blob/master/exemploProjeto.gif)
+
 ## Execução
 
 Criamos um docker para facilitar a execução do projeto. Para usar a aplicação, é preciso instalar o docker em sua máquina (https://www.docker.com/get-started/), clonar este repositório, navegar até a pasta ForYou/docker e rodar o comando para buildar e subir o container:

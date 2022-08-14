@@ -29,6 +29,7 @@ Após isso, a API já estará escutando na porta 8080, pronta para receber as re
 ## Exemplo de utilização
 
 Este vídeo demonstra como utilizar o sistema:
+
 [![](https://img.youtube.com/vi/qCwCjdGsWWU/0.jpg)](https://youtu.be/qCwCjdGsWWU?t=62)
 
 ## Contribuindo

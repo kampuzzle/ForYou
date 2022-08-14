@@ -1,3 +1,5 @@
+//representa as despesas e receitas criadas
+
 module.exports = class Gasto {
 
     constructor(descricao, data, valor, categoria){

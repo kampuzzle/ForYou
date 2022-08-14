@@ -3,24 +3,16 @@ const Gasto = require('../models/Gasto');
 const DespesaGrafico = require('../models/DespesaGrafico')
 const helper = require('../helper/fileHandling');
 
-/*
-var month = (newGasto.data).getMonth() + 1; //months from 1-12
-var day = (newGasto.data).getDate();
-var year = (newGasto.data).getFullYear();
-*/
-
 async function adicionaGasto(req,res){
     var usuarios = helper.leArq()
     let id = 0
 
+    //cria uma nova movimentação do tipo receita ou despesa
     const newGasto = new Gasto(req.body.descricao,req.body.data,req.body.valor,req.body.categoria)
-    //ADICIONAR OU REMOVER O SALDO
 
     for (const user of usuarios) {
-        if( user.nomeDeUsuario === req.body.nomeDeUsuario) {
-            console.log(req.body.nomeDeUsuario)
+        if( user.nomeDeUsuario === req.body.nomeDeUsuario) {  //identifica o usuário
             if (req.body.tipo === "receita"){
-                console.log(req.body.tipo)
                 user.saldoAtual += (req.body).valor;
 
                 //a id é um a mais do q a ultima id
@@ -30,8 +22,7 @@ async function adicionaGasto(req,res){
                 }
                 
                 (user.listaReceitas).push(newGasto);
-                newGasto.setId(id);
-                
+                newGasto.setId(id);   
             }
             else if (req.body.tipo === "despesa") {
                 user.saldoAtual -= (req.body).valor;
@@ -45,72 +36,14 @@ async function adicionaGasto(req,res){
             }
         }
     }
-    console.log(newGasto)
+
     if (helper.escreveArq(usuarios) === 0){
         return res.send({'message': 'ok'});
     }
     res.send({'message':'erro'})
 }
 
-async function atualizaGasto(req, res){
-    // var usuarios = helper.leArq()
-    // //ATUALIZAR O SALDO
-
-    // for (const user of usuarios) {
-    //     if(user.nomeDeUsuario === req.body.nomeDeUsuario) {
-    //         if (req.body.tipo === "Receita"){
-                
-    //             for ( const gasto of user.listaReceitas){
-    //                 if ( req.body.id === gasto.id){
-    //                     if (req.body.descricao != null){
-    //                         gasto.descricao = req.body.descricao
-    //                     }
-    //                     if (req.body.categoria != null){
-    //                         gasto.categoria = req.body.categoria
-    //                     }
-    //                     if (req.body.data != null){
-    //                         //TESTAR TESTAR TESTAR
-    //                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //                         gasto.setDate(req.body.data);
-                            
-    //                     }
-    //                     if (req.body.valor != null){
-    //                         user.saldoAtual += req.body.valor;
-    //                         gasto.valor = req.body.valor
-    //                     }
-    //                 }
-    //             }
-    //         }
-
-    //         else if(req.body.tipo === "Despesa"){
-    //             for ( const gasto of user.listaDespesas){
-    //                 if ( req.body.id === gasto.id){
-    //                     if (req.body.descricao != null){
-    //                         gasto.descricao = req.body.descricao
-    //                     }
-    //                     if (req.body.categoria != null){
-    //                         gasto.categoria = req.body.categoria
-    //                     }
-    //                     if (req.body.data != null){
-    //                         gasto.data = req.body.data
-    //                     }
-    //                     if (req.body.valor != null){
-    //                         user.saldoAtual -= req.body.valor;
-    //                         gasto.valor = req.body.valor
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
-    // if (helper.escreveArq(usuarios) === 0){
-    //     return res.send({'message': 'ok'})
-    // }
-    // res.send({'message': 'erro'})
-
-}
-
+//deleta a movimentação pedida pela id
 async function deleteGasto(req, res){
     var usuarios = helper.leArq()
     var id = 0
@@ -124,8 +57,6 @@ async function deleteGasto(req, res){
                         (user.listaReceitas).splice(id,1);
                         helper.escreveArq(usuarios);
                         return res.send({'message': 'ok'})
-                        //return res.status(200);
-                        break;
                     }
                     id += 1
                 }
@@ -136,9 +67,7 @@ async function deleteGasto(req, res){
                     if ( req.body.id === gasto.id){
                         user.listaDespesas.splice(id,1);
                         helper.escreveArq(usuarios);
-                        return res.send({'message': 'ok'})
-                        //return res.status(200);
-                        break;
+                        return res.send({'message': 'ok'});
                     }
                     id +=1
                 }
@@ -147,46 +76,22 @@ async function deleteGasto(req, res){
     }
 }
 
-async function getCategorias(req, res){
-    var usuarios = helper.leArq();
-
-    for (const user of usuarios) {
-        if( user.nomeDeUsuario === req.params['User']) {
-
-            if (req.params['Tipo'] === "receita"){
-                console.log(JSON.stringify(user.categoriasReceita))
-                return res.json(user.categoriasReceita)
-                
-            }
-            else if (req.params['Tipo'] === "despesa") {
-                console.log(JSON.stringify(user.categoriasDespesa))
-                return res.json(user.categoriasDespesa)
-            }
-        }
-    }
-}
-
-
+//retorna a lista de despesas e receitas do usuário passado
 async function getGastos(req,res){
     var usuarios = helper.leArq();
     var mes = req.params['Mes']
     var listaMovimentacoes = []
 
-    //console.log("get Gastoss")
     for (const user of usuarios) {
         if( user.nomeDeUsuario === req.params['User']) {
-            //console.log("acha o usuario")
            
                 for (const receita of user.listaReceitas){
-                    //console.log(user.listaReceitas, receita)
-                    //console.log(receita.mes, mes)
                     if (receita.mes === mes){
                         receita.tipo = "receita"
                         listaMovimentacoes.push(receita)
                     }
 
                 }
-                //console.log(JSON.stringify(listaMovimentacoes))
 
                 for (const gasto of user.listaDespesas){
                     if (gasto.mes === mes){
@@ -194,51 +99,14 @@ async function getGastos(req,res){
                         listaMovimentacoes.push(gasto)
                     }
                 }
-                //console.log(JSON.stringify(listaMovimentacoes))
+
                 return res.json(listaMovimentacoes)
             
         }
     }
 }
 
-
-async function getDespesas(req,res){
-    var usuarios = helper.leArq();
-    var mes = req.params['Mes']
-    var listaMovimentacoes = []
-
-    console.log("entra na funcao")
-    for (const user of usuarios) {
-        if( user.nomeDeUsuario === req.params['User']) {
-
-            for (const cat of user.categoriasDespesas){
-                somaCat = 0;
-
-                
-                for (const gasto of user.listaDespesas) {
-
-                    if (gasto.categoria === cat) {
-                        console.log(gasto.categoria,cat)
-                        if( mes === gasto.mes){
-                            console.log(mes,gasto.mes)
-                            somaCat += gasto.valor;
-                            const gastoFormat = new DespesaGrafico(cat, somaCat)
-                            listaMovimentacoes.push(gastoFormat)
-                        }
-                        
-                    }
-
-                }
-            }
-
-            console.log(JSON.stringify(listaMovimentacoes))
-            return res.json(listaMovimentacoes)
-            
-        }
-    }
-}
-
-
+//retorna a lista de movimentações de uma categoria específica
 async function getGastosPorCategoria(req,res){
     var usuarios = helper.leArq();
     var mes = req.params['Mes']
@@ -280,6 +148,7 @@ async function getGastosPorCategoria(req,res){
     }
 }
 
+//retorna os valores dos saldos do usuário
 async function getSaldos(req,res){
     var usuarios = helper.leArq();
     var mes = req.params['Mes']
@@ -317,11 +186,8 @@ async function getSaldos(req,res){
 
 module.exports = {
     adicionaGasto,
-    atualizaGasto,
     deleteGasto,
-    getCategorias,
     getGastos,
     getGastosPorCategoria,
     getSaldos,
-    getDespesas,
 };

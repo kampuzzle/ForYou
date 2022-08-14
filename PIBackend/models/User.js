@@ -1,3 +1,5 @@
+//representa o usuário
+
 module.exports = class User {
 
     constructor(nomeDeUsuario, email, senha){

@@ -2,12 +2,12 @@ const userController = require("../controllers/userController");
 const gastoController = require("../controllers/gastoController")
 const router = require("express").Router();
 
-// Aqui estabelece a rota que vai executar o comando do controller exemploController
-
+//rotas utilizando a controller userController
 router.post('/cadastro',userController.criaUsuario)
 router.post('/login',userController.fazLogin)
 router.post('/adicionaCategoria', userController.adicionaCategoria)
 
+//rotas utilizando a controller gastoController
 router.post('/novaMovimentacao', gastoController.adicionaGasto)
 router.put('/attMovimentacao',gastoController.atualizaGasto)
 router.delete('/deleteMovimentacao',gastoController.deleteGasto)

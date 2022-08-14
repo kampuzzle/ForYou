@@ -1,6 +1,6 @@
 # For You
 
-> O produto proposto é um auxiliador de gestão financeira e controle de gastos. Com ele, é possível registrar receitas e gastos, os associando a uma categoria (salário, aluguel, viagem, etc), a uma data (podendo escolher datas retroativas), umvalor e a uma descrição. Também é possível criar categorias novas para seus gastos e receitas. O produto então apresenta um balanço financeiro do mês escolhido, mostrando seu saldo inicial no mês, quanto foi gasto, quanto dinheiro você possui no momento e um gráfico de gastos indicando qual porcentagem foi gasta em cada categoria.
+> O produto proposto é um auxiliador de gestão financeira e controle de gastos. Com ele, é possível registrar receitas e gastos, os associando a uma categoria (salário, aluguel, viagem, etc), a uma data (podendo escolher datas retroativas), um valor e a uma descrição. Também é possível criar categorias novas para seus gastos e receitas. O produto então apresenta um balanço financeiro do mês escolhido, mostrando seu saldo inicial no mês, quanto foi gasto, quanto dinheiro você possui no momento e um gráfico de gastos indicando qual porcentagem foi gasta em cada categoria.
 
 ## Execução
 
@@ -24,4 +24,10 @@ docker-compose up --build
 
 Após isso, a API já estará escutando na porta 8080, pronta para receber as requisições.
 
+## Contribuindo
 
+1. Faça um fork (<https://github.com/kampuzzle/PI/fork>)
+2. Crie uma branch de contribuição (`git checkout -b feature/fooBar`)
+3. Faça um commit (`git commit -am 'Adicionando fooBar'`)
+4. Faça o push para a branch (`git push origin feature/fooBar`)
+5. Crie um novo Pull Request

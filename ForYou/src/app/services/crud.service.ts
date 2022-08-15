@@ -13,7 +13,7 @@ export class CrudService {
   constructor(
     private backendService: BackendService
   ) { }
-
+     //requisições de crud para a API
   public create(item: any, Url:any): Observable<any> {
     return this.backendService.post(Url, item).pipe(
       map((res: any) => {

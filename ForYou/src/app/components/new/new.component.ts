@@ -23,11 +23,13 @@ export class NewComponent implements OnInit {
 
   constructor( private incomeDebtService: IncomeDebtService ) { }
 
+  //toda vez que a tela for inicializada irá armazenar o tipo recebido por input property no tipo do objeto criado e pegar o nome de usuário salvo na localStorage
   ngOnInit(): void {
     this.new.tipo = this.tipo;
     this.new.nomeDeUsuario = localStorage.getItem('username');
   }
 
+  //pega o nome do usuario na localStorage e cria uma nova movimentação chamando o serviço de incomeDebt
   create() {
     this.new.tipo = this.tipo;
     this.new.nomeDeUsuario = localStorage.getItem('username');

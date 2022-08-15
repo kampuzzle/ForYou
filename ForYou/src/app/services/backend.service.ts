@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class BackendService {
 
-  private API = 'http://localhost:8080'; //MOCK
+  private API = 'http://localhost:8080'; 
 
   constructor( private http: HttpClient ) { }
-
+  //requisições para a API
   public getById = (Url: string, id: any) => {
     return this.http.get(this.API + Url + '/' + id);
   }

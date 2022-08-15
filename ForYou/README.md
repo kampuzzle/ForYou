@@ -1,27 +1,13 @@
-# ForYou
+# NAVEGANDO ENTRE AS PASTAS
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
+#### COMPONENTS
+A pasta components contem componentes que são usados por mais de uma view
 
-## Development server
+#### MODELS
+A pasta models contem as classes que são utilizadas no programa
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### SERVICES
+A pasta services contem arquivos de serviços providos para a aplicaçao, como serviço de autenticação, comunicação com a API, CRUDs, etc.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### VIEWS
+A pasta views contem todas as diferentes telas que a aplicação possui. Cada pasta dentro da views, contem 6 arquivos: um para testes, um html, um scss, um modulo para gerir serviços e bibliotecas importadas, um arquivo de rotas, caso necessário, e um arquivo typescript contendo toda a lógica da view em questão. 
